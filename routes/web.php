@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Customer\ConversionController;
+use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\Customer\ProfileController;
+use App\Http\Controllers\TestApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [CustomerController::class,'index'])->name('home');
+
+Route::middleware('auth')->group(function () {
+    # Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('customer.profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('customer.profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('customer.profile.destroy');
+
+    # Conversion
+    Route::get('/profile/conversions', [ConversionController::class, 'index'])->name('customer.conversions.index');
+    Route::get('/conversions/create', [ConversionController::class, 'create'])->middleware('credit')->name('customer.conversions.create');
+    Route::post('/conversions', [ConversionController::class, 'store'])->middleware('credit')->name('customer.conversions.store');
+    Route::delete('/conversions/{id}', [ConversionController::class, 'destroy'])->name('customer.conversions.destroy');
+
 });
+
+Route::get('/test-api', [TestApiController::class,'index'])->name('test-api');
+
+require __DIR__.'/admin-auth.php';
+require __DIR__.'/customer-auth.php';

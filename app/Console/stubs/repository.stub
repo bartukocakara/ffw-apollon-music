@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\$name$;
+
+class $name$Repository extends BaseRepository
+{
+    // Crud işlemleri gerekmiyorsa extends'i kaldırınız. //
+
+    protected $name$ $$variable$;
+
+    /**
+     * @param $name$ $$variable$
+     * @return void
+    */
+    public function __construct($name$ $$variable$)
+    {
+        // Ortak crud işlemleri için BaseRepository construct'ına model gönderiliyor.
+        parent::__construct($$variable$);
+        // Model bu repoda kullanılmak üzere değişkene tanımlanıyor.
+        $this->$variable$ = $$variable$;
+    }
+}

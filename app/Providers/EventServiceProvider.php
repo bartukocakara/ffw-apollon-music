@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\AsticaDescribeEvent;
+use App\Events\SoundrawMusicComposeEvent;
+use App\Events\SummarifyZeroShotEvent;
+use App\Listeners\AsticaDescribeListener;
+use App\Listeners\SoundrawMusicComposeListener;
+use App\Listeners\SummarifyZeroShotListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,7 +31,18 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(
+            AsticaDescribeEvent::class,
+            [AsticaDescribeListener::class, 'handle']
+        );
+        Event::listen(
+            SoundrawMusicComposeEvent::class,
+            [SoundrawMusicComposeListener::class, 'handle']
+        );
+        Event::listen(
+            SummarifyZeroShotEvent::class,
+            [SummarifyZeroShotListener::class, 'handle']
+        );
     }
 
     /**

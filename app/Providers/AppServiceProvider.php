@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Credit;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        app()->bind('credit_amount', function () {
+            return Credit::where('user_id', auth()->user()->id)->first()->amount ?? 0;
+        });
     }
 }
