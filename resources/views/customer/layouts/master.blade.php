@@ -136,7 +136,7 @@
         </div>
         <main class="page-wrapper">
             @include('sweetalert::alert')
-
+            @include('customer.modals.spinner-modal')
             @include('customer.modals.gdpr-modal')
             @include('customer.modals.licence-modal')
             @include('customer.modals.privacy-modal')

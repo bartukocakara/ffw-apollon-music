@@ -24,12 +24,12 @@ class ConversionFactory extends Factory
             'status' => fake()->randomElement([0, 1]),
             'image_path' => 'uploads/musics/img_65a3f3620138d.jpg',
             'music_path' => 'uploads/musics/music_65a3f3620138d.m4a',
-            'genres' => fake()->randomElement([['Rock', 'Acoustic'], ['Acoustic', 'Classic'], ['Jazz', 'Acoustic'], ['Jazz Rock']]),
-            'themes' => fake()->randomElement([['Ads & Trailers', 'Broadcasting'],
-                ['Cinematic', 'Corporate'], ['Comedy', 'Cooking'], ['Documentary', 'Drama'],
-                ['Fashion & Beauty', 'Gaming'], ['Holiday Season', 'Horror & Thriller'],
-                ['Motivational & Inspiring', 'Nature'], ['Photography', 'Sports & Action'],
-                ['Technology', 'Travel'], ['Tutorials', 'Vlogs'], ['Wedding & Romance', 'Workout & Wellness']
+            'genres' => fake()->randomElement(['Rock', 'Acoustic', 'Classic', 'Jazz']),
+            'themes' => fake()->randomElement(['Ads & Trailers', 'Broadcasting',
+                'Cinematic', 'Corporate', 'Comedy', 'Cooking', 'Documentary', 'Drama',
+                'Fashion & Beauty', 'Gaming', 'Holiday Season', 'Horror & Thriller',
+                'Motivational & Inspiring', 'Nature', 'Photography', 'Sports & Action',
+                'Technology', 'Travel', 'Tutorials', 'Vlogs', 'Wedding & Romance', 'Workout & Wellness'
             ]),
             'length' => fake()->numberBetween(50, 300), // Assuming length is in minutes
             'tempo' => fake()->randomElement([MusicTempoEnum::LOW->value,
