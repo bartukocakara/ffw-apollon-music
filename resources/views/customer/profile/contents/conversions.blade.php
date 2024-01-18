@@ -17,11 +17,13 @@
                 <div class="border ">
                     <img src="{{ asset('storage/'.$conversion['image_path']) }}" alt="">
                     <h6>Genres</h6>
-                    @foreach ($conversion['genres'] as $item)
+                    {{ $conversion['genres'] }}
+                    {{--@foreach ($conversion['genres'] as $item)
                         <p>
                             {{ $item }}
                         </p>
                     @endforeach
+                    --}}
                     <audio controls>
                         <source src="{{ asset('storage/'.$conversion['music_path']) }}" type="audio/mp4">
                         Your browser does not support the audio element.

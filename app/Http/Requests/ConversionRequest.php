@@ -18,7 +18,7 @@ class ConversionRequest extends FormRequest
             'themes' => 'required',
             'length' => 'required',
             'tempo' => 'required',
-            'image' => 'required',
+            'image' => 'required|file|mimes:jpeg,png,jpg,gif',
         ];
     }
 }

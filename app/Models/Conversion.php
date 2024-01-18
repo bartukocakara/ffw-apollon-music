@@ -25,10 +25,10 @@ class Conversion extends Model
         'tempo'
     ];
 
-    protected $casts = [
-        'genres' => 'array',
-        'themes' => 'array',
-    ];
+    // protected $casts = [
+    //     'genres' => 'array',
+    //     'themes' => 'array',
+    // ];
 
     /**
      * Filter için scope oluşturuyoruz.
