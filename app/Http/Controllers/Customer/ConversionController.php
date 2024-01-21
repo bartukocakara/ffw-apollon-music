@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Http\RedirectResponse;
 
 class ConversionController extends Controller
 {
@@ -36,9 +37,14 @@ class ConversionController extends Controller
     public function index(Request $request) : View
     {
         $collection = ConversionResource::collection($this->conversionService->all($request))
-                    ->response()
-                    ->getData(true);
-        return view('customer.profile.contents.conversions', [ 'collection' => $collection]);
+            ->response()
+            ->getData(true);
+
+        $pagination = $collection['meta'] ?? null;
+        return view('customer.profile.contents.conversions', [
+            'collection' => $collection,
+            'pagination' => $pagination,
+        ]);
     }
 
     /**
@@ -84,22 +90,25 @@ class ConversionController extends Controller
      * Kaynağı güncellemek için kullanılır.
      *
      * @param  ConversionRequest $request
-     * @param  int $id
-     * @return JsonResponse
+     * @param  string $id
+     * @return
     */
-    public function update(ConversionRequest $request, string $id) : JsonResponse
+    public function update(ConversionRequest $request, string $id)
     {
-        return $this->noContentApiResponse($this->conversionService->update($request->validated(), $id));
+        return $this->conversionService->update($request->validated(), $id);
     }
 
     /**
      * Kaynağı kaldırmak için kullanılır.
      *
-     * @param  int $id
-     * @return JsonResponse
+     * @param  string $id
+     * @return RedirectResponse
      */
-    public function destroy(string $id) : JsonResponse
+    public function destroy(string $id): RedirectResponse
     {
-        return $this->noContentApiResponse($this->conversionService->destroy($id));
+        $this->conversionService->delete($id);
+        Alert::html('success', 'Your music successfully deleted');
+
+        return redirect('/profile/conversions');
     }
 }

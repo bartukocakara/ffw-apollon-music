@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/conversions', [ConversionController::class, 'index'])->name('customer.conversions.index');
     Route::get('/conversions/create', [ConversionController::class, 'create'])->middleware('credit')->name('customer.conversions.create');
     Route::post('/conversions', [ConversionController::class, 'store'])->middleware('credit')->name('customer.conversions.store');
+    Route::put('/conversions/{id}', [ConversionController::class, 'update'])->name('customer.conversions.update');
     Route::delete('/conversions/{id}', [ConversionController::class, 'destroy'])->name('customer.conversions.destroy');
 
 });

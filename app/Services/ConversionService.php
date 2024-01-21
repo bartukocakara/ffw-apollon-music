@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ConversionService extends CrudService
 {
-    // Crud işlemleri gerekmiyorsa extends'i kaldırınız. //
-
     protected ConversionRepository $conversionRepository;
 
     /**
@@ -19,9 +17,7 @@ class ConversionService extends CrudService
     */
     public function __construct(ConversionRepository $conversionRepository)
     {
-        // Extend ettiğimiz CrudService'in __construct methoduna repositoryi gönderiyoruz.
         parent::__construct($conversionRepository); // Crud işlemleri yoksa kaldırınız.
-        // Repository bu serviste kullanılmak üzere değişkene tanımlanıyor.
         $this->conversionRepository = $conversionRepository;
     }
 
@@ -44,5 +40,20 @@ class ConversionService extends CrudService
                                     ]);
 
         return $conversion;
+    }
+
+    public function delete($id) : bool
+    {
+        $model = $this->conversionRepository->find($id);
+
+        if (Storage::disk('public')->exists($model->image_path)) {
+            Storage::disk('public')->delete($model->image_path);
+        }
+
+        if (Storage::disk('public')->exists($model->music_path)) {
+            Storage::disk('public')->delete($model->music_path);
+        }
+
+        return $this->conversionRepository->delete($id);
     }
 }

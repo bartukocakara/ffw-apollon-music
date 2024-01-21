@@ -13,12 +13,23 @@ class ConversionRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'genres' => 'required',
-            'themes' => 'required',
-            'length' => 'required',
-            'tempo' => 'required',
-            'image' => 'required|file|mimes:jpeg,png,jpg,gif',
+        $rules = [
+            'genres' => 'string',
+            'themes' => 'string',
+            'length' => 'string',
+            'tempo' => 'string',
+            'image' => 'file',
+            'is_favorite' => 'boolean',
         ];
+
+        // If the request method is POST, remove the 'is_favorite' rule
+        if ($this->isMethod('post')) {
+            unset($rules['is_favorite']);
+            $rules = array_map(function ($rule) {
+                return $rule . '|required';
+            }, $rules);
+        }
+
+        return $rules;
     }
 }

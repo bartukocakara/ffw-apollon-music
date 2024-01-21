@@ -40,7 +40,8 @@ class FilterBuilder
 
             (new $class($this->query))->handle($value ?? '');
         }
-       return !empty($this->filters['per_page']) ? $this->paginating($this->query, $this->filters) : $this->query->get();
+
+        return  $this->paginating($this->query, $this->filters);
 
     }
 

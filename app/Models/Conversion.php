@@ -22,7 +22,9 @@ class Conversion extends Model
         'genres',
         'themes',
         'length',
-        'tempo'
+        'tempo',
+        'status',
+        'is_favorite'
     ];
 
     // protected $casts = [

@@ -11,6 +11,7 @@
 
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Theme switcher (color modes) -->
     <script src="{{ asset('assets/js/theme-switcher.js') }}"></script>
@@ -131,13 +132,14 @@
         <div class="page-loading active">
             <div class="page-loading-inner">
             <div class="page-spinner"></div>
-            <span>Loading...</span>
+                <span>Loading...</span>
             </div>
         </div>
         <main class="page-wrapper">
             @include('sweetalert::alert')
-            @include('customer.modals.spinner-modal')
+
             @include('customer.modals.gdpr-modal')
+            @include('customer.modals.spinner-modal')
             @include('customer.modals.licence-modal')
             @include('customer.modals.privacy-modal')
             @include('customer.layouts.header')
@@ -149,8 +151,8 @@
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
-
-
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>
