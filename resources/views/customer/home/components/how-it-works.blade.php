@@ -53,7 +53,7 @@
        </div>
     </div>
     <div class="text-center" style="margin-bottom: 50px; margin-top: 50px;">
-       <a href="https://www.apollonengine.com/create-music" class="btn btn-primary btn-lg">Create Music</a>
+       <a href="{{ route('customer.conversions.create') }}" class="btn btn-primary btn-lg">Create Music</a>
     </div>
     <p class="text-center" style="margin-top: 100px;">Create Music with Apollon Engine and open the doors to a limitless world<br>where your imagination takes center stage, transforming the harmony of visuals and words into magical melodies.</p>
 </section>
