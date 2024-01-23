@@ -39,7 +39,6 @@ class AuthService extends CrudService
 
         $this->creditRepository->create([
             'user_id' => $user->id,
-            'type' => 'free',
             'price' => 0,
             'amount' => 3,
         ]);
