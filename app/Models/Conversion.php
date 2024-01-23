@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Filters\FilterBuilder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Conversion extends Model
 {
@@ -42,5 +43,10 @@ class Conversion extends Model
     public function scopeFilterBy($query, array $filters) : Collection|LengthAwarePaginator
     {
         return (new FilterBuilder($query, $filters,'ConversionFilters'))->apply();
+    }
+
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
