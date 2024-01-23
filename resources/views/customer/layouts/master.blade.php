@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8">
-    <title>Apollo Engine - @yield('title')</title>
+    <title>{{ config('app.name') }} - @yield('title')</title>
 
     <!-- SEO Meta Tags-->
     <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">

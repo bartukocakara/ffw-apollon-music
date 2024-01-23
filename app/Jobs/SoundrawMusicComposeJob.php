@@ -51,7 +51,6 @@ class SoundrawMusicComposeJob implements ShouldQueue
         try {
             $params = $this->params;
             $response = SoundrawService::sendRequest('', 'POST', $params);
-
             if ($response->status() === Response::HTTP_OK) {
                 $m4aUrl = $response['m4a_url'];
                 $uniqueFileName = uniqid('music_') . '.m4a';

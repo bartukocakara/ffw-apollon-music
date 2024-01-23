@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ConversionService extends CrudService
 {
+    // Crud işlemleri gerekmiyorsa extends'i kaldırınız. //
+
     protected ConversionRepository $conversionRepository;
 
     /**
@@ -17,7 +19,9 @@ class ConversionService extends CrudService
     */
     public function __construct(ConversionRepository $conversionRepository)
     {
+        // Extend ettiğimiz CrudService'in __construct methoduna repositoryi gönderiyoruz.
         parent::__construct($conversionRepository); // Crud işlemleri yoksa kaldırınız.
+        // Repository bu serviste kullanılmak üzere değişkene tanımlanıyor.
         $this->conversionRepository = $conversionRepository;
     }
 
@@ -30,6 +34,7 @@ class ConversionService extends CrudService
         $file = $data['image'];
         $uniqueFileName = uniqid('image_') . '.jpg';
         $destinationPath = 'uploads/img/' . $uniqueFileName;
+        $data['user_id'] = auth()->user()->id;
 
         Storage::disk('public')->put($destinationPath, file_get_contents($file->getRealPath()));
         $imageBase64 = base64_encode(file_get_contents(storage_path('app/public/' . $destinationPath)));
@@ -42,18 +47,23 @@ class ConversionService extends CrudService
         return $conversion;
     }
 
-    public function delete($id) : bool
+    public function delete($id): bool
     {
         $model = $this->conversionRepository->find($id);
 
-        if (Storage::disk('public')->exists($model->image_path ?? '')) {
-            Storage::disk('public')->delete($model->image_path);
+        if ($model) {
+            if ($model->image_path && Storage::disk('public')->exists($model->image_path)) {
+                Storage::disk('public')->delete($model->image_path);
+            }
+
+            if ($model->music_path && Storage::disk('public')->exists($model->music_path)) {
+                Storage::disk('public')->delete($model->music_path);
+            }
+
+            return $this->conversionRepository->delete($id);
         }
 
-        if (Storage::disk('public')->exists($model->music_path ?? '')) {
-            Storage::disk('public')->delete($model->music_path);
-        }
-
-        return $this->conversionRepository->delete($id);
+        return false;
     }
+
 }
