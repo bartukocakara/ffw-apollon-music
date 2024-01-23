@@ -46,11 +46,11 @@ class ConversionService extends CrudService
     {
         $model = $this->conversionRepository->find($id);
 
-        if (Storage::disk('public')->exists($model->image_path)) {
+        if (Storage::disk('public')->exists($model->image_path ?? '')) {
             Storage::disk('public')->delete($model->image_path);
         }
 
-        if (Storage::disk('public')->exists($model->music_path)) {
+        if (Storage::disk('public')->exists($model->music_path ?? '')) {
             Storage::disk('public')->delete($model->music_path);
         }
 
