@@ -16,12 +16,7 @@ class AsticaService
                 'Content-Type' => 'application/json',
             ];
 
-            // Set a reasonable timeout value, e.g., 60 seconds
-            $timeout = 60;
-
             return Http::withHeaders($headers)
-                ->withoutVerifying()
-                ->timeout($timeout)
                 ->{$method}($url, $data);
         } catch (RequestException $e) {
             // Handle request exception, e.g., log the error
