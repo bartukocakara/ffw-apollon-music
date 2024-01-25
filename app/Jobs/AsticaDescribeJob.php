@@ -31,7 +31,7 @@ class AsticaDescribeJob implements ShouldQueue
      *
      * @var int
      */
-    public $timeout = 60; // Set the timeout duration in seconds
+    public $timeout = 120; // Increase the timeout duration in seconds
 
     /**
      * Create a new job instance.
@@ -63,8 +63,25 @@ class AsticaDescribeJob implements ShouldQueue
                 SummarifyZeroShotEvent::dispatch($this->conversion, $response->json());
             }
         } catch (\Exception $e) {
+            if ($this->attempts() < $this->tries && $this->isTimeoutException($e)) {
+                // Retry the job if it's a timeout exception
+                throw $e;
+            }
+
             // Log the exception or handle it as needed
-            throw $e; // Re-throw the exception to let Laravel handle retries
         }
     }
+
+    /**
+     * Check if the exception is a cURL timeout exception.
+     *
+     * @param \Exception $e
+     * @return bool
+     */
+    private function isTimeoutException(\Exception $e): bool
+    {
+        return $e instanceof \Illuminate\Http\Client\ConnectionException &&
+            strpos($e->getMessage(), 'Operation timed out') !== false;
+    }
 }
+    
