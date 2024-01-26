@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Credit;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,14 @@ class CreditSeeder extends Seeder
      */
     public function run(): void
     {
-        Credit::factory(100)->create();
+        $user = User::where('email', 'kocakarabartu@gmail.com')->first();
+        Credit::create([
+            'user_id' => $user->id,
+            'price' => "10050",
+            'amount' => rand(1, 50),
+        ]);
+
+        Credit::factory(2)->create();
+
     }
 }

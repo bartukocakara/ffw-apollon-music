@@ -7,6 +7,6 @@ spec:
       repo_clone_url: https://github.com/bartukocakara/ffw-apollon-music.git
     envs:
     - key: APP_KEY
-      value: "base64:UdAH2B63rlotjrkSSsj3Hppy4gbfr+OeHvtSdF9r9q8="
+      value: "base64:tefpKZQdh3Y/8O0Q20iJMCVw734YAXJJCF9EgLloiAc="
     name: ffw-apollon-music
     run_command: heroku-php-apache2 public/

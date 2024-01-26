@@ -13,6 +13,6 @@ class ConversionSeeder extends Seeder
      */
     public function run(): void
     {
-        Conversion::factory(100)->create();
+        Conversion::factory(2)->create();
     }
 }

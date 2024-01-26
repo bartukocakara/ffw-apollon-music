@@ -124,19 +124,22 @@
                                     <a href="#" class="favorite-icon" data-conversion-id="{{ $conversion['id'] }}">
                                         <i class='bx {{ $conversion['is_favorite'] ? 'bxs' : 'bx' }}-heart'></i>
                                     </a>
+                                    <a href="{{ asset('storage/' . $conversion['music_path']) }}" download class="px-3 ">
+                                        <i class="bx bx-download fs-xl me-xl-2"></i>
+                                    </a>
                                 </h2>
 
-                            <p class="mb-4 mb-lg-5">{{ $conversion['genres'] }} / {{ $conversion['tempo'] }} / {{ $conversion['length'] }}</p>
-                            <div class="d-flex">
-                                <form action="{{ route('customer.conversions.destroy', $conversion['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this conversion?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger px-3 px-lg-4">
-                                        <i class="bx bx-trash-alt fs-xl me-xl-2"></i>
-                                        <span class="d-none d-xl-inline">{{ __('Delete') }}</span>
-                                    </button>
-                                </form>
-                            </div>
+                                <p class="mb-4 mb-lg-5">{{ $conversion['genres'] }} / {{ $conversion['tempo'] }} / {{ $conversion['length'] }}</p>
+                                <div class="d-flex">
+                                    <form action="{{ route('customer.conversions.destroy', $conversion['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this conversion?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger px-3 px-lg-4">
+                                            <i class="bx bx-trash-alt fs-xl me-xl-2"></i>
+                                            <span class="d-none d-xl-inline">{{ __('Delete') }}</span>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         </div>
