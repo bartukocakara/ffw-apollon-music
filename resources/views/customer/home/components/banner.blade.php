@@ -1,8 +1,9 @@
 <section class="position-relative pt-10 mb-10" style="background-color: #0f1215">
     <div class="dark-mode container position-relative zindex-2 pt-10">
         <div class="mt-8 mb-lg-5 mb-4 py-3">
-            <h1 class="display-4 mb-0 text-center" style="margin-top: 100px;">FFW AI V1.0 <br>AI Music Generator</h1>
-            <h2 class="text-center">Powered by Apollon Engine</h2>
+            <h1 class="display-4 mb-0 text-center" style="margin-top: 100px;">AI Music Generator</h1>
+            <h2 class=" text-center">FFW AI V1.0</h2>
+            <h6 class="text-center">Powered by Apollon Engine</h6>
         </div>
         <div class="w-75 m-auto">
         <iframe width="300" height="450" src="https://www.youtube.com/embed/48iFhaJTdgA?si=wGhigTDenQu6-dAP" title="YouTube video player" frameborder="0" allowfullscreen=""></iframe>

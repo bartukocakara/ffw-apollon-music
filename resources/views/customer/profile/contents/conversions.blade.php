@@ -31,36 +31,6 @@
                     </select>
                 </div>
                 <div class="col-6 mb-4">
-                    <label for="mood" class="form-label fs-base">Mood</label>
-                    <select id="mood" name="mood" class="form-select form-select-lg">
-                        <option value="Angry">Angry</option>
-                        <option value="Busy & Frantic">Busy&Frantic</option>
-                        <option value="Dark">Dark</option>
-                        <option value="Dreamy">Dreamy</option>
-                        <option value="Elegant">Elegant</option>
-                        <option value="Epic">Epic</option>
-                        <option value="Euphoric">Euphoric</option>
-                        <option value="Fear">Fear</option>
-                        <option value="Funny & Weird">Funny & Weird</option>
-                        <option value="Glamorous">Glamorous</option>
-                        <option value="Happy">Happy</option>
-                        <option value="Heavy & Ponderous">Heavy&Ponderous</option>
-                        <option value="Hopeful">Hopeful</option>
-                        <option value="Laid back">Laidback</option>
-                        <option value="Mysterious">Mysterious</option>
-                        <option value="Peaceful">Peaceful</option>
-                        <option value="Restless">Restless</option>
-                        <option value="Romantic">Romantic</option>
-                        <option value="Running">Running</option>
-                        <option value="Sad">Sad</option>
-                        <option value="Scary">Scary</option>
-                        <option value="Sentimental">Sentimental</option>
-                        <option value="Sexy">Sexy</option>
-                        <option value="Smooth">Smooth</option>
-                        <option value="Suspense">Suspense</option>
-                    </select>
-                </div>
-                <div class="col-6 mb-4">
                     <label for="genre" class="form-label fs-base text-white">Genre</label>
                     <select id="genre" name="genres" class="form-select form-select-lg">
                         <option value="Acoustic">Acoustic</option>
@@ -106,7 +76,7 @@
 
                     <div class="card border-0 shadow-sm overflow-hidden mb-4">
                         <div class="row g-0">
-                            <a class="position-relative col-sm-4 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url({{ asset('storage/'.$conversion['image_path']) }}); min-height: 13rem;" aria-label="Cover image">
+                            <a class="position-relative col-sm-4 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url('{{ asset('storage/'.$conversion['image_path']) }}); min-height: 13rem;" aria-label="Cover image">
                                 <div class=" top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center zindex-5">
                                     <button onclick="playThis(this)" class="btn btn-video btn-icon btn-xl bg-white">
                                         <i class="bx bx-play"></i>
@@ -116,6 +86,7 @@
                                 <video class="videoElement d-block w-100"  style="height:150px" poster="{{ asset('storage/'.$conversion['image_path']) }}">
                                     <source src="{{ asset('storage/'.$conversion['music_path']) }}" type="video/mp4">
                                 </video>
+
                             </a>
                         <div class="col-sm-8">
                             <div class="card-body">
@@ -182,7 +153,6 @@
         document.getElementById('filterButton').addEventListener('click', function () {
             // Get selected values from the dropdowns
             var selectedLength = document.getElementById('length').value;
-            var selectedMood = document.getElementById('mood').value;
             var selectedGenre = document.getElementById('genre').value;
             var selectedIsFavorite = document.getElementById('is_favorite').value;
 
@@ -192,7 +162,6 @@
             // Build the URL with filter parameters and default values
             var filterUrl = '{{ route('customer.conversions.index') }}' +
                 '?length=' + selectedLength +
-                '&mood=' + selectedMood +
                 '&is_favorite=' + selectedIsFavorite +
                 '&genre=' + selectedGenre +
                 '&order_by=created_at' + // Set default order_by value here
@@ -206,14 +175,12 @@
 
             // Get the values from the URL
             var selectedLength = urlParams.get('length');
-            var selectedMood = urlParams.get('mood');
             var selectedGenre = urlParams.get('genre');
             var selectedIsFavorite = urlParams.get('is_favorite');
             var selectedPerPage = urlParams.get('per_page');
 
             // Set the selected values in the dropdowns
             document.getElementById('length').value = selectedLength;
-            document.getElementById('mood').value = selectedMood;
             document.getElementById('genre').value = selectedGenre;
             document.getElementById('is_favorite').value = selectedIsFavorite;
             document.getElementById('per_page').value = selectedPerPage;
@@ -226,7 +193,6 @@
         document.getElementById('clearFilterButton').addEventListener('click', function () {
             // Reset selected values in the dropdowns
             document.getElementById('length').value = '';
-            document.getElementById('mood').value = '';
             document.getElementById('genre').value = '';
             document.getElementById('is_favorite').value = '';
 

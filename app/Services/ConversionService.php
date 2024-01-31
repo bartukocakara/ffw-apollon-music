@@ -28,24 +28,54 @@ class ConversionService extends CrudService
     /**
      * @param array $data
      * @return Model
-    */
-    public function store(array $data) : Model
+     */
+    public function store(array $data): Model
     {
         $file = $data['image'];
         $uniqueFileName = uniqid('image_') . '.jpg';
         $destinationPath = 'uploads/img/' . $uniqueFileName;
         $data['user_id'] = auth()->user()->id;
 
-        Storage::disk('public')->put($destinationPath, file_get_contents($file->getRealPath()));
-        $imageBase64 = base64_encode(file_get_contents(storage_path('app/public/' . $destinationPath)));
+        // Get the original image dimensions
+        list($originalWidth, $originalHeight) = getimagesize($file->getPathname());
+
+        // Set the maximum width and calculate the new height to maintain the aspect ratio
+        $maxWidth = 800; // Adjust this value as needed
+        $newWidth = min($originalWidth, $maxWidth);
+        $newHeight = ($newWidth / $originalWidth) * $originalHeight;
+
+        // Create a new image with the specified dimensions
+        $resizedImage = imagecreatetruecolor($newWidth, $newHeight);
+        // Load the original image
+        $originalImage = imagecreatefromjpeg($file->getPathname());
+
+        // Resize the original image to the new dimensions
+        imagecopyresampled($resizedImage, $originalImage, 0, 0, 0, 0, $newWidth, $newHeight, $originalWidth, $originalHeight);
+
+        // Save the resized image to storage
+        $resizedImagePath = storage_path('app/public/' . $destinationPath);
+        imagejpeg($resizedImage, $resizedImagePath);
+
+        // Get base64 encoding of the resized image
+        $imageBase64 = base64_encode(file_get_contents($resizedImagePath));
+
+        // Free up memory
+        imagedestroy($resizedImage);
+        imagedestroy($originalImage);
+
+        // Create and store the conversion record
         $conversion = $this->conversionRepository->create($data);
+
+        // Dispatch the job
         AsticaDescribeJob::dispatch($conversion, [
-                                        'image_base64' => $imageBase64,
-                                        'destination_path' => $destinationPath
-                                    ]);
+            'image_base64' => $imageBase64,
+            'destination_path' => $destinationPath
+        ]);
 
         return $conversion;
     }
+
+
 
     public function delete($id): bool
     {
