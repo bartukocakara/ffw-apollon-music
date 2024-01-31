@@ -73,46 +73,40 @@
             <div class="row g-md-4 g-3">
             @foreach ($collection['data'] as $conversion )
                 <div class="col-6 border-0 shadow-sm overflow-hidden mb-4">
-
                     <div class="card border-0 shadow-sm overflow-hidden mb-4">
                         <div class="row g-0">
-                            <a class="position-relative col-sm-4 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url('{{ asset('storage/'.$conversion['image_path']) }}); min-height: 13rem;" aria-label="Cover image">
+                            <a class="position-relative col-sm-4 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url({{ asset('storage/'.$conversion['image_path']) }}); min-height: 13rem;" aria-label="Cover image">
                                 <div class=" top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center zindex-5">
                                     <button onclick="playThis(this)" class="btn btn-video btn-icon btn-xl bg-white">
                                         <i class="bx bx-play"></i>
                                     </button>
                                 </div>
                                 <span class=" top-0 start-0 w-100 h-100 bg-black opacity-35"></span>
-                                <video class="videoElement d-block w-100"  style="height:150px" poster="{{ asset('storage/'.$conversion['image_path']) }}">
-                                    <source src="{{ asset('storage/'.$conversion['music_path']) }}" type="video/mp4">
-                                </video>
-
-                            </a>
-                        <div class="col-sm-8">
-                            <div class="card-body">
-                            <div class="fs-sm text-muted mb-1">{{ $conversion['created_at'] }}</div>
-                                <h2 class="h4 pb-1 mb-2">
-                                    <a href="#" class="favorite-icon" data-conversion-id="{{ $conversion['id'] }}">
-                                        <i class='bx {{ $conversion['is_favorite'] ? 'bxs' : 'bx' }}-heart'></i>
-                                    </a>
-                                    <a href="{{ asset('storage/' . $conversion['music_path']) }}" download class="px-3 ">
-                                        <i class="bx bx-download fs-xl me-xl-2"></i>
-                                    </a>
-                                </h2>
-
-                                <p class="mb-4 mb-lg-5">{{ $conversion['genres'] }} / {{ $conversion['tempo'] }} / {{ $conversion['length'] }}</p>
-                                <div class="d-flex">
-                                    <form action="{{ route('customer.conversions.destroy', $conversion['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this conversion?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger px-3 px-lg-4">
-                                            <i class="bx bx-trash-alt fs-xl me-xl-2"></i>
-                                            <span class="d-none d-xl-inline">{{ __('Delete') }}</span>
-                                        </button>
-                                    </form>
+                                    <video class="videoElement d-block w-100"  style="height:150px">
+                                        <source src="{{ asset('storage/'.$conversion['music_path']) }}" type="video/mp4">
+                                    </video>
+                                </a>
+                            <div class="col-sm-8">
+                                <div class="card-body">
+                                    <div class="fs-sm text-muted mb-1">{{ $conversion['created_at'] }}</div>
+                                    <h2 class="h4 pb-1 mb-2">
+                                        <a href="#" class="favorite-icon" data-conversion-id="8841fd5d-7f76-4e47-9da3-31a09a4724af">
+                                            <i class="bx bx-heart"></i>
+                                        </a>
+                                    </h2>
+                                    <p class="mb-4 mb-lg-5">{{ $conversion['genres'] }} / {{ $conversion['tempo'] }} / {{ $conversion['length'] }}</p>
+                                    <div class="d-flex">
+                                        <form action="{{ route('customer.conversions.destroy', $conversion['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this conversion?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger px-3 px-lg-4">
+                                                <i class="bx bx-trash-alt fs-xl me-xl-2"></i>
+                                                <span class="d-none d-xl-inline">{{ __('Delete') }}</span>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>

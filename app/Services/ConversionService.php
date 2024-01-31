@@ -62,6 +62,7 @@ class ConversionService extends CrudService
         // Free up memory
         imagedestroy($resizedImage);
         imagedestroy($originalImage);
+        $data['image_path'] = $destinationPath;
 
         // Create and store the conversion record
         $conversion = $this->conversionRepository->create($data);

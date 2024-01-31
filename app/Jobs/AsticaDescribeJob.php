@@ -58,7 +58,6 @@ class AsticaDescribeJob implements ShouldQueue
             $response = AsticaService::sendRequest('', 'POST', $asticaData);
 
             if ($response->status() === Response::HTTP_OK) {
-                $this->conversion->image_path = $this->params['destination_path'];
                 $this->conversion->save();
                 SummarifyZeroShotEvent::dispatch($this->conversion, $response->json());
             }
@@ -84,4 +83,3 @@ class AsticaDescribeJob implements ShouldQueue
             strpos($e->getMessage(), 'Operation timed out') !== false;
     }
 }
-    
