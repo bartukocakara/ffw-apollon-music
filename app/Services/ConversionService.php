@@ -76,8 +76,6 @@ class ConversionService extends CrudService
         return $conversion;
     }
 
-
-
     public function delete($id): bool
     {
         $model = $this->conversionRepository->find($id);

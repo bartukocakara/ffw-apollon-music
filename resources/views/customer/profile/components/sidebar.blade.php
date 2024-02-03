@@ -7,25 +7,25 @@
             <p class="mb-3 pb-3">{{ Auth::user()->email }}</p>
             <button type="button" class="btn btn-secondary w-100 d-md-none mt-n2 mb-3" data-bs-toggle="collapse" data-bs-target="#account-menu">
                 <i class="bx bxs-user-detail fs-xl me-2"></i>
-                    Account menu
+                Account menu
                 <i class="bx bx-chevron-down fs-lg ms-1"></i>
             </button>
-          <div id="account-menu" class="list-group list-group-flush collapse d-md-block">
-                <a href="{{ route('customer.profile.edit') }}" class="list-group-item list-group-item-action d-flex align-items-center active">
+            <div id="account-menu" class="list-group list-group-flush collapse d-md-block">
+                <a href="{{ route('customer.profile.edit') }}" class="list-group-item list-group-item-action d-flex align-items-center {{ request()->is('profile') ? 'active' : '' }}">
                     <i class="bx bx-cog fs-xl opacity-60 me-2"></i>
-                    Accountt Details
+                    Account Details
                 </a>
-                <a href="{{ route('customer.conversions.index') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                <a href="{{ route('customer.conversions.index') }}" class="list-group-item list-group-item-action d-flex align-items-center {{ request()->is('profile/conversions') ? 'active' : '' }}">
                     <i class="bx bx-collection fs-xl opacity-60 me-2"></i>
-                        Conversions
+                    Conversions
                 </a>
-                <a href="account-payment.html" class="list-group-item list-group-item-action d-flex align-items-center">
+                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center {{ request()->is('customer/payment/details') ? 'active' : '' }}">
                     <i class="bx bx-credit-card-front fs-xl opacity-60 me-2"></i>
-                        Payment Details
+                    Payment Details
                 </a>
-                <a href="account-signin.html" class="list-group-item list-group-item-action d-flex align-items-center">
+                <a href="{{ route('customer.logout') }}" class="list-group-item list-group-item-action d-flex align-items-center {{ request()->is('customer/signout') ? 'active' : '' }}">
                     <i class="bx bx-log-out fs-xl opacity-60 me-2"></i>
-                        Sign Out
+                    Sign Out
                 </a>
             </div>
         </div>

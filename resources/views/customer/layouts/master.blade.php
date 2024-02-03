@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="utf-8">
     <title>{{ config('app.name') }} - @yield('title')</title>
@@ -13,9 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Theme switcher (color modes) -->
-    <script src="{{ asset('assets/js/theme-switcher.js') }}"></script>
-
     <!-- Favicon and Touch Icons-->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
@@ -25,7 +22,6 @@
     <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}">
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="{{ asset('assets/favicon/browserconfig.xml') }}">
-    <meta name="theme-color" content="#ffffff">
 
     <!-- Vendor Styles-->
     <link rel="stylesheet" media="screen" href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}">
@@ -150,7 +146,6 @@
     <script src="{{ asset('assets/vendor/@lottiefiles/lottie-player/dist/lottie-player.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
-    <script src="{{ asset('assets/js/theme.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
