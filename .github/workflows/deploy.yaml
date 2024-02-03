@@ -20,7 +20,12 @@ jobs:
           php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           php -r "unlink('composer-setup.php');"
         shell: /usr/bin/bash -e {0}
-
+        
+      - name: Debug SSH variables
+        run: |
+          echo "SSH_HOST: ${{ secrets.SSH_HOST }}"
+          echo "SSH_USERNAME: ${{ secrets.SSH_USERNAME }}"
+          echo "SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}"
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
