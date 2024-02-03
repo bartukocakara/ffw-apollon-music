@@ -15,7 +15,9 @@ jobs:
 
       - name: Set up SSH
         run: |
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > /tmp/private_key
+          ssh-add /tmp/private_key
+          rm /tmp/private_key
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
