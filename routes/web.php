@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/test-api', [TestApiController::class,'index'])->name('test-api');
+Route::get('/deneme', function() {
+    dd(123);
+});
 
 require __DIR__.'/admin-auth.php';
 require __DIR__.'/customer-auth.php';
