@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/test-api', [TestApiController::class,'index'])->name('test-api');
-Route::get('/denemeeeee', function() {
+Route::get('/deneme', function() {
     dd(123);
 });
 
