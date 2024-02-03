@@ -20,7 +20,7 @@ jobs:
           php composer-setup.php --install-dir=/usr/local/bin --filename=composer
           php -r "unlink('composer-setup.php');"
         shell: /usr/bin/bash -e {0}
-        
+
       - name: Debug SSH variables
         run: |
           echo "SSH_HOST: ${{ secrets.SSH_HOST }}"
