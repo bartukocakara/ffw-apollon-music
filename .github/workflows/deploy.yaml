@@ -1,4 +1,4 @@
-name: Deploy to Digital Ocean
+name: Deploy to Production
 
 on:
   push:
@@ -10,16 +10,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy
+      - name: Install dependencies
         run: |
-          ssh root@165.22.95.191 'bash -s' < deploy.sh
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          sudo apt-get update
+          sudo apt-get install -y php-cli
+
+          # Install Composer
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php -r "if (hash_file('sha384', 'composer-setup.php') === 'YOUR_HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          php -r "unlink('composer-setup.php');"
+
+          # Install Laravel dependencies
+          composer install --no-interaction --no-dev --prefer-dist
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/ffw-apollon-music
+            git pull origin master
+            php artisan migrate --force
+            # Add any other deployment steps here
+
