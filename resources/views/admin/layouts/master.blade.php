@@ -2,10 +2,10 @@
 <html lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8">
-    <title>Silicon UI Kit | Tables</title>
+    <title>FFW Admin</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">
+    <meta name="description" content="FFW Admin template">
     <meta name="keywords" content="bootstrap, business, creative agency, mobile app showcase, saas, fintech, finance, online courses, software, medical, conference landing, services, e-commerce, shopping cart, multipurpose, shop, ui kit, marketing, seo, landing, blog, portfolio, html5, css3, javascript, gallery, slider, touch, creative">
     <meta name="author" content="Createx Studio">
 
@@ -16,12 +16,16 @@
     <script src="{{ asset('assets/js/theme-switcher.js') }}"></script>
 
     <!-- Favicon and Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/favicon/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('assets/favicon/safari-pinned-tab.svg') }}" color="#6366f1">
-    <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/brand2.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/brand2.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/brand2.png') }}">
+    <link rel="manifest" href="{{ asset('assets/img/brand2.png') }}">
+    <link rel="mask-icon" href="{{ asset('assets/img/brand2.png') }}" color="#6366f1">
+    <link rel="shortcut icon" href="{{ asset('assets/img/brand2.png') }}">
+    
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="{{ asset('assets/favicon/browserconfig.xml') }}">
+
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="{{ asset('assets/favicon/browserconfig.xml') }}">
     <meta name="theme-color" content="#ffffff">

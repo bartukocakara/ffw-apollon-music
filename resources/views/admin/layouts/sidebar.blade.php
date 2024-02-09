@@ -2,10 +2,9 @@
     <div id="componentsNav" class="offcanvas-lg offcanvas-start d-flex flex-column position-fixed top-0 start-0 vh-100 bg-dark border-end-lg" style="width: 21rem; z-index: 1045;">
       <div class="offcanvas-header d-none d-lg-flex justify-content-start">
         <a href="typography.html" class="navbar-brand text-dark d-none d-lg-flex py-0">
-          <img src="../assets/img/logo.svg" width="47" alt="Silicon">
-          Silicon
+          <img src="../assets/img/logo.svg" width="47" alt="FFW Apollon">
+          FFW Apollon
         </a>
-        <span class="badge bg-warning d-none d-lg-inline-block">UI Kit</span>
       </div>
       <div class="offcanvas-header d-block d-lg-none border-bottom">
         <div class="d-flex align-items-center justify-content-between mb-3">
@@ -55,10 +54,7 @@
         <div class="swiper-scrollbar end-0"></div>
       </div>
       <div class="offcanvas-header border-top">
-        <a href="https://themes.getbootstrap.com/product/silicon-business-technology-template-ui-kit/" class="btn btn-primary w-100" target="_blank" rel="noopener">
-          <i class="bx bx-cart fs-4 lh-1 me-1"></i>
-          &nbsp;Buy now
-        </a>
+        
       </div>
     </div>
   </aside>
