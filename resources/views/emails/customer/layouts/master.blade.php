@@ -2,9 +2,9 @@
 <html lang="en" data-bs-theme="light">
    <head>
       <meta charset="utf-8">
-      <title>Apollo Engine - @yield('title')</title>
+      <title>FFW Apollon - @yield('title')</title>
       <!-- SEO Meta Tags-->
-      <meta name="description" content="Silicon - Multipurpose Technology Bootstrap Template">
+      <meta name="description" content="FFW Apollon - Multipurpose Technology Bootstrap Template">
       <meta name="keywords" content="bootstrap, business, creative agency, construction, services, e-commerce, shopping cart, mobile app showcase, multipurpose, shop, ui kit, marketing, seo, landing, html5, css3, javascript, gallery, slider, touch, creative">
       <meta name="author" content="Createx Studio">
       <!-- Viewport-->

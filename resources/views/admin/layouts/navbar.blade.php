@@ -2,8 +2,8 @@
     <div class="container-fluid pe-lg-4">
       <div class="d-flex align-items-center">
         <a href="typography.html" class="navbar-brand flex-shrink-0 py-1 py-lg-2">
-          <img src="../assets/img/logo.svg" width="47" alt="Silicon">
-          Silicon
+          <img src="../assets/img/logo.svg" width="47" alt="FFW Apollon">
+          FFW Apollon
         </a>
         <span class="badge bg-warning">UI Kit</span>
       </div>
