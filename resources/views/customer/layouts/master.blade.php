@@ -143,7 +143,6 @@
     <script src="{{ asset('assets/vendor/@lottiefiles/lottie-player/dist/lottie-player.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
