@@ -19,14 +19,16 @@
                     <i class="bx bx-collection fs-xl opacity-60 me-2"></i>
                     Conversions
                 </a>
-                <a href="#" class="list-group-item list-group-item-action d-flex align-items-center {{ request()->is('customer/payment/details') ? 'active' : '' }}">
-                    <i class="bx bx-credit-card-front fs-xl opacity-60 me-2"></i>
-                    Payment Details
-                </a>
-                <a href="{{ route('customer.logout') }}" class="list-group-item list-group-item-action d-flex align-items-center {{ request()->is('customer/signout') ? 'active' : '' }}">
-                    <i class="bx bx-log-out fs-xl opacity-60 me-2"></i>
-                    Sign Out
-                </a>
+                <form method="POST" action="{{ route('customer.logout') }}">
+                    @csrf
+                    <x-dropdown-link class="dropdown-item d-flex align-items-center" :href="route('customer.logout')"
+                        onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                        <i class="bx bx-log-out fs-base opacity-60 me-2"></i>
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
+
             </div>
         </div>
     </div>
