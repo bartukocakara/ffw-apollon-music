@@ -36,18 +36,9 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URL'),
     ],
-    'astica' => [
-        'base_url' => env('ASTICA_BASE_URL'),
-        'token' => env('ASTICA_TOKEN')
-    ],
+
     'soundraw' => [
         'base_url' => env('SOUNDRAW_BASE_URL'),
         'token' => env('SOUNDRAW_TOKEN')
     ],
-    'summarify' => [
-        'base_url' => env('SUMMARIFY_BASE_URL'),
-        'username' => env('SUMMARIFY_USERNAME'),
-        'password' => env('SUMMARIFY_PASSWORD'),
-    ],
-
 ];
