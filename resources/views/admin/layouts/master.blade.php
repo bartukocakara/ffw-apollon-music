@@ -16,13 +16,13 @@
     <script src="{{ asset('assets/js/theme-switcher.js') }}"></script>
 
     <!-- Favicon and Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/brand2.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/brand2.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/brand2.png') }}">
-    <link rel="manifest" href="{{ asset('assets/img/brand2.png') }}">
-    <link rel="mask-icon" href="{{ asset('assets/img/brand2.png') }}" color="#6366f1">
-    <link rel="shortcut icon" href="{{ asset('assets/img/brand2.png') }}">
-    
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon.png') }}">
+    <link rel="manifest" href="{{ asset('favicon.png') }}">
+    <link rel="mask-icon" href="{{ asset('favicon.png') }}" color="#6366f1">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+
     <meta name="msapplication-TileColor" content="#080032">
     <meta name="msapplication-config" content="{{ asset('assets/favicon/browserconfig.xml') }}">
 

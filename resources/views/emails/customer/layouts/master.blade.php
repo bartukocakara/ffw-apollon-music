@@ -11,7 +11,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- Theme switcher (color modes) -->
       <!-- Favicon and Touch Icons-->
-      <link rel="shortcut icon" href="{{ asset('assets/favicon/favicon.ico') }}">
+      <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
       <meta name="msapplication-TileColor" content="#080032">
       <meta name="theme-color" content="#ffffff">
       <!-- Vendor Styles-->

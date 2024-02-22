@@ -5,15 +5,13 @@
             {{ config('app.name') }}
         </a>
         --}}
-         <a href="route('home') --}}">
             <div style="opacity: 1; transform: none;">
                 <div class="logo" style="width:125px">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('assets/img/brand2.png') }}" alt="">
+                        <img src="{{ asset('favicon.png') }}" alt="">
                     </a>
                 </div>
             </div>
-        </a>
         <div id="navbarNav" class="offcanvas offcanvas-end">
             <div class="offcanvas-header border-bottom">
                 <h5 class="offcanvas-title">Menu</h5>

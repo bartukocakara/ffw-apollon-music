@@ -5,9 +5,6 @@
        <!-- Item -->
        <div class="col">
           <div class="card card-hover border-0 bg-transparent">
-             <div class="position-relative">
-                <img src="https://www.apollonengine.com/themes/apollon-engine/assets/apollonimages/upload_image.png" class="rounded-3" alt="Jenny Wilson">
-             </div>
              <div class="card-body text-center p-3">
                 <h3 class="fs-lg fw-semibold pt-1 mb-2 text-white">Step 1: Upload an Image</h3>
                 <p class="fs-sm mb-0">Create music with Apollon Engine by uploading an inspiring image. Whether it's a breathtaking landscape, an artistic painting, or a captivating photograph, simply upload the image and let the magic begin.
@@ -18,21 +15,14 @@
        <!-- Item -->
        <div class="col">
           <div class="card card-hover border-0 bg-transparent">
-             <div class="position-relative">
-                <img src="https://www.apollonengine.com/themes/apollon-engine/assets/apollonimages/write_text.png" class="rounded-3" alt="Ralph Edwards">
-             </div>
              <div class="card-body text-center p-3">
                 <h3 class="fs-lg fw-semibold pt-1 mb-2 text-white">Step 2: Write Any Text</h3>
                 <p class="fs-sm mb-0">Express your creativity by adding text that gives meaning to your music. Whether it's a powerful quote, a heartfelt message, or your own original lyrics, write down the words that touch you and let them shape your music.</p>
              </div>
           </div>
        </div>
-       <!-- Item -->
        <div class="col">
           <div class="card card-hover border-0 bg-transparent">
-             <div class="position-relative">
-                <img src="https://www.apollonengine.com/themes/apollon-engine/assets/apollonimages/select_genre.png" class="rounded-3" alt="Cameron Williamson">
-             </div>
              <div class="card-body text-center p-3">
                 <h3 class="fs-lg fw-semibold pt-1 mb-2 text-white">Step 3: Select Genre, Theme, and Tempo</h3>
                 <p class="fs-sm mb-0">Customize your music to fit your imagination. Choose from a wide range of 18 different genres, including pop, rock, classical, or electronic. Select a theme that resonates with the mood or story you want to convey. Set the tempo of the music to determine the rhythm and energy of your composition.</p>
@@ -42,9 +32,6 @@
        <!-- Item -->
        <div class="col">
           <div class="card card-hover border-0 bg-transparent">
-             <div class="position-relative">
-                <img src="https://www.apollonengine.com/themes/apollon-engine/assets/apollonimages/compose.png" class="rounded-3" alt="Jerome Bell">
-             </div>
              <div class="card-body text-center p-3">
                 <h3 class="fs-lg fw-semibold pt-1 mb-2 text-white">Step 4: Compose</h3>
                 <p class="fs-sm mb-0">Enjoy the music created by Apollon Engine. Relax and marvel as the uploaded image, chosen text, genre, theme, and tempo come together to create a unique and enchanting music experience.</p>
