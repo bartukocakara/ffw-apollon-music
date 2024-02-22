@@ -14,22 +14,41 @@
                     <p>&nbsp;</p>
                     <h2 class="h5 text-primary mb-4 text-white">Current number of tokens: {{ app('credit_amount') }}</h2>
                 </div>
-                <form method="POST"
-                    action="{{ route('customer.conversions.store') }}"
-                    class="needs-validation mb-2"
-                    enctype="multipart/form-data"
-                    id="conversionForm">
+                <form method="POST" action="{{ route('customer.conversions.store') }}" class="needs-validation mb-2" id="conversionForm">
                     {{ csrf_field() }}
                     <div class="row pb-2">
-                        <div class="form-group col-sm-12 mb-4 file-upload-wrapper">
-                            <div class="d-flex">
-                            <label for="image" class="btn btn-primary shadow-primary btn-lg w-50 btn-file-upload-full" style="height: 200px; font-size: 14px;">
-                                <i class="bx bx-cloud-upload" style="font-size: 50;"></i><br>Upload Image<br>File For Music
-                                <input type="file" class="form-control-file" id="image" name="image" accept=".jpeg, .jpg, .png" onchange="previewImage(this)">
-                            </label>
-                            <img id="imagePreview" class="mt-3" style="max-width: 50%; display:none" alt="Image Preview">
-                            </div>
-                            <x-input-error :messages="$errors->get('image')" class="text-danger list-unstyled text-bold" />
+                        <div class="col-sm-12 mb-4">
+                            <label for="mood" class="form-label fs-base text-white">Mood</label>
+                            <select id="mood" name="mood" class="form-select form-select-lg" required="">
+                                <option value="Epic">Epic</option>
+                                <option value="Happy">Happy</option>
+                                <option value="Hopeful">Hopeful</option>
+                                <option value="Laid Back">Laid Back</option>
+                                <option value="Angry">Angry</option>
+                                <option value="Sentimental">Sentimental</option>
+                                <option value="Busy & Frantic">Busy & Frantic</option>
+                                <option value="Romantic">Romantic</option>
+                                <option value="Funny & Weird">Funny & Weird</option>
+                                <option value="Dark">Dark</option>
+                                <option value="Glamorous">Glamorous</option>
+                                <option value="Mysterious">Mysterious</option>
+                                <option value="Elegant">Elegant</option>
+                                <option value="Dreamy">Dreamy</option>
+                                <option value="Euphoric">Euphoric</option>
+                                <option value="Fear">Fear</option>
+                                <option value="Heavy & Ponderous">Heavy & Ponderous</option>
+                                <option value="Peaceful">Peaceful</option>
+                                <option value="Restless">Restless</option>
+                                <option value="Running">Running</option>
+                                <option value="Sad">Sad</option>
+                                <option value="Scary">Scary</option>
+                                <option value="Sexy">Sexy</option>
+                                <option value="Smooth">Smooth</option>
+                                <option value="Suspense">Suspense</option>
+                            </select>
+                            <x-input-error :messages="$errors->get('themes')" class="text-danger list-unstyled text-bold" />
+
+                            <div class="invalid-feedback">Please choose theme!</div>
                         </div>
                         <div class="col-sm-12 mb-4">
                             <label for="length" class="form-label fs-base text-white">Length</label>

@@ -75,7 +75,7 @@
                 <div class="col-6 border-0 shadow-sm overflow-hidden mb-4">
                     <div class="card border-0 shadow-sm overflow-hidden mb-4">
                         <div class="row g-0">
-                            <a class="position-relative col-sm-4 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url({{ asset('storage/'.$conversion['image_path']) }}); min-height: 13rem;" aria-label="Cover image">
+                            <a class="position-relative col-sm-4 bg-repeat-0 bg-position-center bg-size-cover" >
                                 <div class=" top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center zindex-5">
                                     <button onclick="playThis(this)" class="btn btn-video btn-icon btn-xl bg-white">
                                         <i class="bx bx-play"></i>
@@ -94,7 +94,7 @@
                                             <i class="bx bx-heart"></i>
                                         </a>
                                     </h2>
-                                    <p class="mb-4 mb-lg-5">{{ $conversion['genres'] }} / {{ $conversion['tempo'] }} / {{ $conversion['length'] }}</p>
+                                    <p class="mb-4 mb-lg-5">{{ $conversion['mood'] }} / {{ $conversion['genres'] }} / {{ $conversion['tempo'] }} / {{ $conversion['length'] }}</p>
                                     <div class="d-flex">
                                         <form action="{{ route('customer.conversions.destroy', $conversion['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this conversion?')">
                                             @csrf

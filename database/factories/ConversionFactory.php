@@ -22,7 +22,11 @@ class ConversionFactory extends Factory
         return [
             'user_id' => fake()->randomElement(User::all()->pluck('id')),
             'status' => fake()->randomElement([0, 1]),
-            'image_path' => 'uploads/musics/img_65a3f3620138d.jpg',
+            'mood' => fake()->randomElement(['Epic', 'Happy', 'Hopeful', 'Laid Black', 'Angry',
+                                             'Sentimental', 'Busy & Frantic', 'Romantic', 'Funny & Weird',
+                                             'Dark', 'Glamorous', 'Mysterious', 'Elegant', 'Dreamy', 'Euphric',
+                                             'Fear', 'Heavy & Ponderous', 'Peaceful', 'Restless', 'Running', 'Sad',
+                                             'Scary', 'Sexy', 'Smooth', 'Suspense']),
             'music_path' => 'uploads/musics/music_65a3f3620138d.m4a',
             'genres' => fake()->randomElement(['Rock', 'Acoustic', 'Classic', 'Jazz']),
             'themes' => fake()->randomElement(['Ads & Trailers', 'Broadcasting',

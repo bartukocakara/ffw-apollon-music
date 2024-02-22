@@ -18,7 +18,7 @@ class ConversionRequest extends FormRequest
             'themes' => 'string',
             'length' => 'string',
             'tempo' => 'string',
-            'image' => 'file',
+            'mood' => 'string',
             'is_favorite' => 'boolean',
         ];
 

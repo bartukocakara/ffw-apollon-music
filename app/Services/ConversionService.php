@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Jobs\AsticaDescribeJob;
+use App\Jobs\SoundrawMusicComposeJob;
 use App\Repositories\ConversionRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -31,47 +31,13 @@ class ConversionService extends CrudService
      */
     public function store(array $data): Model
     {
-        $file = $data['image'];
-        $uniqueFileName = uniqid('image_') . '.jpg';
-        $destinationPath = 'uploads/img/' . $uniqueFileName;
         $data['user_id'] = auth()->user()->id;
-
-        // Get the original image dimensions
-        list($originalWidth, $originalHeight) = getimagesize($file->getPathname());
-
-        // Set the maximum width and calculate the new height to maintain the aspect ratio
-        $maxWidth = 800; // Adjust this value as needed
-        $newWidth = min($originalWidth, $maxWidth);
-        $newHeight = ($newWidth / $originalWidth) * $originalHeight;
-
-        // Create a new image with the specified dimensions
-        $resizedImage = imagecreatetruecolor($newWidth, $newHeight);
-        // Load the original image
-        $originalImage = imagecreatefromjpeg($file->getPathname());
-
-        // Resize the original image to the new dimensions
-        imagecopyresampled($resizedImage, $originalImage, 0, 0, 0, 0, $newWidth, $newHeight, $originalWidth, $originalHeight);
-
-        // Save the resized image to storage
-        $resizedImagePath = storage_path('app/public/' . $destinationPath);
-        imagejpeg($resizedImage, $resizedImagePath);
-
-        // Get base64 encoding of the resized image
-        $imageBase64 = base64_encode(file_get_contents($resizedImagePath));
-
-        // Free up memory
-        imagedestroy($resizedImage);
-        imagedestroy($originalImage);
-        $data['image_path'] = $destinationPath;
 
         // Create and store the conversion record
         $conversion = $this->conversionRepository->create($data);
 
         // Dispatch the job
-        AsticaDescribeJob::dispatch($conversion, [
-            'image_base64' => $imageBase64,
-            'destination_path' => $destinationPath
-        ]);
+        SoundrawMusicComposeJob::dispatch($conversion);
 
         return $conversion;
     }
@@ -81,10 +47,6 @@ class ConversionService extends CrudService
         $model = $this->conversionRepository->find($id);
 
         if ($model) {
-            if ($model->image_path && Storage::disk('public')->exists($model->image_path)) {
-                Storage::disk('public')->delete($model->image_path);
-            }
-
             if ($model->music_path && Storage::disk('public')->exists($model->music_path)) {
                 Storage::disk('public')->delete($model->music_path);
             }
@@ -94,5 +56,7 @@ class ConversionService extends CrudService
 
         return false;
     }
+
+
 
 }

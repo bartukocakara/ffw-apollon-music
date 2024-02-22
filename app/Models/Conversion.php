@@ -19,7 +19,7 @@ class Conversion extends Model
     protected $fillable = [
         'user_id',
         'music_path',
-        'image_path',
+        'mood',
         'genres',
         'themes',
         'length',

@@ -25,7 +25,7 @@ return new class extends Migration
                                     MusicTempoEnum::NORMAL->value,
                                     MusicTempoEnum::HIGH->value]);
             $table->string('music_path')->nullable(true);
-            $table->string('image_path')->nullable(true);
+            $table->string('mood');
             $table->boolean('status')->default(1);
             $table->boolean('is_favorite')->default(0);
             $table->timestamps();
