@@ -19,7 +19,7 @@ class Conversion extends Model
     protected $fillable = [
         'user_id',
         'music_path',
-        'mood',
+        'moods',
         'genres',
         'themes',
         'length',
@@ -28,10 +28,11 @@ class Conversion extends Model
         'is_favorite'
     ];
 
-    // protected $casts = [
-    //     'genres' => 'array',
-    //     'themes' => 'array',
-    // ];
+    protected $casts = [
+        'genres' => 'array',
+        'themes' => 'array',
+        'moods' => 'array',
+    ];
 
     /**
      * Filter için scope oluşturuyoruz.

@@ -14,14 +14,13 @@ class ConversionRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'genres' => 'string',
-            'themes' => 'string',
+            'genres' => 'array',
+            'themes' => 'array',
             'length' => 'string',
             'tempo' => 'string',
-            'mood' => 'string',
+            'moods' => 'array',
             'is_favorite' => 'boolean',
         ];
-
         // If the request method is POST, remove the 'is_favorite' rule
         if ($this->isMethod('post')) {
             unset($rules['is_favorite']);

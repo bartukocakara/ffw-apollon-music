@@ -54,7 +54,7 @@ class SoundrawMusicComposeJob implements ShouldQueue
         try {
 
             $soundDrawData = [
-                'mood' => $this->conversion->mood,
+                'mood' => $this->conversion->moods,
                 'genres' => $this->conversion->genres,
                 'themes' => $this->conversion->themes,
                 'length' => $this->conversion->length,

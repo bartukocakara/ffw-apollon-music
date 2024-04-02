@@ -18,57 +18,149 @@
                     {{ __('Create Music') }}
                 </a>
             </div>
-            <div class="row" id="filterForm">
-                <div class="col-6 mb-4">
-                    <label for="length" class="form-label fs-base text-white">Length</label>
-                    <select id="length" name="length" class="form-select form-select-lg">
-                        <option value="15">0:15</option>
-                        <option value="30">0:30</option>
-                        <option value="45">0:45</option>
-                        <option value="60">1:00</option>
-                        <option value="120">2:00</option>
-                        <option value="180">3:00</option>
-                    </select>
-                </div>
-                <div class="col-6 mb-4">
-                    <label for="genre" class="form-label fs-base text-white">Genre</label>
-                    <select id="genre" name="genres" class="form-select form-select-lg">
-                        <option value="Acoustic">Acoustic</option>
-                        <option value="Hip Hop">Hip Hop</option>
-                        <option value="Beats">Beats</option>
-                        <option value="Pop">Pop</option>
-                        <option value="Trap">Trap</option>
-                        <option value="Tokyo night pop">Tokyo night pop</option>
-                        <option value="Rock">Rock</option>
-                        <option value="Latin">Latin</option>
-                        <option value="House">House</option>
-                        <option value="Tropical House">Tropical House</option>
-                        <option value="Ambient">Ambient</option>
-                        <option value="Orchestra">Orchestra</option>
-                        <option value="Electro &amp; Dance">Electro &amp; Dance</option>
-                        <option value="Electronica">Electronica</option>
-                        <option value="Techno &amp; Trance">Techno &amp; Trance</option>
-                    </select>
-                </div>
-                <div class="col-3 mb-4">
-                    <label for="per_page" class="form-label fs-base text-white">Results Per Page</label>
-                    <select id="per_page" name="per_page" class="form-select form-select-lg">
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                    </select>
-                </div>
-                <div class="col-3 mb-4">
-                    <label for="is_favorite" class="form-label fs-base text-white">Favorite</label>
-                    <select id="is_favorite" name="is_favorite" class="form-select form-select-lg">
-                        <option value="0">All</option>
-                        <option value="1">Favorite</option>
-                    </select>
+            <div id="filterButton">
+                <ul class="nav nav-tabs-alt" role="tablist">
+                    <li class="nav-item">
+                        <a href="#genre" class="nav-link active" data-bs-toggle="tab" role="tab">
+                            Genre
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#mood" class="nav-link" data-bs-toggle="tab" role="tab">
+                            Mood
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#theme" class="nav-link" data-bs-toggle="tab" role="tab">
+                            Theme
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <select id="tempo" name="tempo" class="nav-link">
+                            <option>Tempo</option>
+                            <option value="low">Low</option>
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <select id="length" name="length" class="nav-link">
+                            <option>Length</option>
+                            <option value="15">0:15</option>
+                            <option value="30">0:30</option>
+                            <option value="45">0:45</option>
+                            <option value="60">1:00</option>
+                            <option value="120">2:00</option>
+                            <option value="180">3:00</option>
+                        </select>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="genre" role="tabpanel">
+                        @foreach (config('options.genres') as $value)
+                            <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                                {{ $value['name'] }}
+                            <input class="d-none" type="checkbox" name="genres[]" value="{{ $value['name'] }}">
+                            <img src="{{ asset('options/genres/' . $value['image_name'])) }}" alt="{{ $value['name'] }}">
+                            </span>
+                        @endforeach
+                    </div>
+                    <div class="tab-pane fade" id="mood" role="tabpanel">
+                        @foreach (config('options.moods') as $value)
+                            <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                                {{ $value['name'] }}
+                            <input class="d-none" type="checkbox" name="moods[]" value="{{ $value['name'] }}">
+                            <img src="{{ asset('options/moods/' . $value['image_name'])) }}" alt="{{ $value['name'] }}">
+                            </span>
+                        @endforeach
+                        
+                    </div>
+                    <div class="tab-pane fade" id="theme" role="tabpanel">
+
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Ads & Trailers
+                            <input class="d-none" type="checkbox" name="themes[]" value="Ads & Trailers">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Broadcasting
+                            <input class="d-none" type="checkbox" name="themes[]" value="Broadcasting">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Cinematic
+                            <input class="d-none" type="checkbox" name="themes[]" value="Cinematic">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Corporate
+                            <input class="d-none" type="checkbox" name="themes[]" value="Corporate">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Comedy
+                            <input class="d-none" type="checkbox" name="themes[]" value="Comedy">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Cooking
+                            <input class="d-none" type="checkbox" name="themes[]" value="Cooking">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Documentary
+                            <input class="d-none" type="checkbox" name="themes[]" value="Documentary">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Drama
+                            <input class="d-none" type="checkbox" name="themes[]" value="Drama">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Fashion & Beauty
+                            <input class="d-none" type="checkbox" name="themes[]" value="Fashion & Beauty">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Gaming
+                            <input class="d-none" type="checkbox" name="themes[]" value="Gaming">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Holiday season
+                            <input class="d-none" type="checkbox" name="themes[]" value="Holiday season">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Motivational & Inspiring
+                            <input class="d-none" type="checkbox" name="themes[]" value="Motivational & Inspiring">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Nature
+                            <input class="d-none" type="checkbox" name="themes[]" value="Nature">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Photography
+                            <input class="d-none" type="checkbox" name="themes[]" value="Photography">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Technology
+                            <input class="d-none" type="checkbox" name="themes[]" value="Technology">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Travel
+                            <input class="d-none" type="checkbox" name="themes[]" value="Travel">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Tutorials
+                            <input class="d-none" type="checkbox" name="themes[]" value="Tutorials">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Wedding & Romance
+                            <input class="d-none" type="checkbox" name="themes[]" value="Wedding & Romance">
+                        </span>
+                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                            Workout & Wellness
+                            <input class="d-none" type="checkbox" name="themes[]" value="Workout & Wellness">
+                        </span>
+
+                    </div>
                 </div>
                 <div class="d-flex">
-                    <button id="filterButton" class="btn btn-primary w-25" style="margin:auto">Activate Filter<i class='bx bx-filter'></i></button>
+                    <button id="" class="btn btn-primary w-25" style="margin:auto">Activate Filter<i class='bx bx-filter'></i></button>
                     <button id="clearFilterButton" class="btn btn-secondary w-25" style="margin:auto">Clear Filter<i class='bx bx-sync'></i></button>
                 </div>
-            </div>
+            </form>
             <br/>
             <div class="row g-md-4 g-3">
             @foreach ($collection['data'] as $conversion )
@@ -90,11 +182,32 @@
                                 <div class="card-body">
                                     <div class="fs-sm text-muted mb-1">{{ $conversion['created_at'] }}</div>
                                     <h2 class="h4 pb-1 mb-2">
-                                        <a href="#" class="favorite-icon" data-conversion-id="8841fd5d-7f76-4e47-9da3-31a09a4724af">
-                                            <i class="bx bx-heart"></i>
+                                        <a href="#" class="favorite-icon" data-conversion-id="{{ $conversion['id'] }}">
+                                            <i class='bx {{ $conversion['is_favorite'] ? 'bxs' : 'bx' }}-heart'></i>
                                         </a>
                                     </h2>
-                                    <p class="mb-4 mb-lg-5">{{ $conversion['mood'] }} / {{ $conversion['genres'] }} / {{ $conversion['tempo'] }} / {{ $conversion['length'] }}</p>
+                                    <h6>Moods</h6>
+                                    @foreach($conversion['moods'] as $value)
+                                        <span class="btn btn-outline-primary btn-sm mb-2">
+                                            {{ $value }}
+                                        </span>
+
+                                    @endforeach
+                                    <h6>Genres</h6>
+                                    @foreach($conversion['moods'] as $value)
+                                        <span class="btn btn-outline-primary btn-sm mb-2">
+                                            {{ $value }}
+                                        </span>
+
+                                    @endforeach
+                                    <h6>Themes</h6>
+                                    @foreach($conversion['themes'] as $value)
+                                        <span class="btn btn-outline-primary btn-sm mb-2">
+                                            {{ $value }}
+                                        </span>
+
+                                    @endforeach
+
                                     <div class="d-flex">
                                         <form action="{{ route('customer.conversions.destroy', $conversion['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this conversion?')">
                                             @csrf
@@ -142,61 +255,90 @@
             button.innerHTML = '<i class="bx bx-play"></i>';
         }
     }
+    function toggleCheckbox(span) {
+            // Get the hidden checkbox inside the span
+            var checkbox = span.querySelector('input[type="checkbox"]');
+
+            // Toggle the 'checked' attribute of the checkbox
+            checkbox.checked = !checkbox.checked;
+
+            // Optionally, you can also toggle the 'active' class on the span
+            if (checkbox.checked) {
+                span.classList.add('active');
+            } else {
+                span.classList.remove('active');
+            }
+        }
+
     document.addEventListener('DOMContentLoaded', function () {
+        // Set selected options based on values in the URL
+        var urlParams = new URLSearchParams(window.location.search);
 
-        document.getElementById('filterButton').addEventListener('click', function () {
-            // Get selected values from the dropdowns
-            var selectedLength = document.getElementById('length').value;
-            var selectedGenre = document.getElementById('genre').value;
-            var selectedIsFavorite = document.getElementById('is_favorite').value;
+        // Get the values from the URL
+        var selectedLength = urlParams.get('length');
+        var selectedGenres = urlParams.get('genres');
+        var selectedThemes = urlParams.get('themes');
+        var selectedMoods = urlParams.get('moods');
+        var selectedIsFavorite = urlParams.get('is_favorite');
+        var selectedPerPage = urlParams.get('per_page');
+        // Set the selected values in the dropdowns
+        document.getElementById('length').value = selectedLength;
+        document.getElementById('is_favorite').value = selectedIsFavorite;
+        document.getElementById('per_page').value = selectedPerPage;
 
-            // Get the selected per_page value or set it to the default (10)
-            var selectedPerPage = document.getElementById('per_page').value || 10;
+        // Check and activate selected checkboxes for genres, themes, and moods
+        var selectedGenres = urlParams.getAll('genres[]');
+        var selectedThemes = urlParams.getAll('themes[]');
+        var selectedMoods = urlParams.getAll('moods[]');
+        selectedGenres.forEach(function (genre) {
+            document.querySelector('input[name="genres[]"][value="' + genre + '"]').checked = true;
+            var checkbox = span.querySelector('input[type="checkbox"]');
 
-            // Build the URL with filter parameters and default values
-            var filterUrl = '{{ route('customer.conversions.index') }}' +
-                '?length=' + selectedLength +
-                '&is_favorite=' + selectedIsFavorite +
-                '&genre=' + selectedGenre +
-                '&order_by=created_at' + // Set default order_by value here
-                '&per_page=' + selectedPerPage; // Set default per_page value here
-
-            // Redirect to the filtered URL
-            window.location.href = filterUrl;
-
-            // Set selected options based on values in the URL
-            var urlParams = new URLSearchParams(window.location.search);
-
-            // Get the values from the URL
-            var selectedLength = urlParams.get('length');
-            var selectedGenre = urlParams.get('genre');
-            var selectedIsFavorite = urlParams.get('is_favorite');
-            var selectedPerPage = urlParams.get('per_page');
-
-            // Set the selected values in the dropdowns
-            document.getElementById('length').value = selectedLength;
-            document.getElementById('genre').value = selectedGenre;
-            document.getElementById('is_favorite').value = selectedIsFavorite;
-            document.getElementById('per_page').value = selectedPerPage;
+        });
+        selectedThemes.forEach(function (theme) {
+            document.querySelector('input[name="themes[]"][value="' + theme + '"]').checked = true;
+        });
+        selectedMoods.forEach(function (mood) {
+            document.querySelector('input[name="moods[]"][value="' + mood + '"]').checked = true;
         });
 
-        // Set the default per_page value to 10
-        document.getElementById('per_page').value = 10;
+        // Add similar logic for themes and moods if needed
+    });
 
-        // Clear Filter button click event
-        document.getElementById('clearFilterButton').addEventListener('click', function () {
-            // Reset selected values in the dropdowns
-            document.getElementById('length').value = '';
-            document.getElementById('genre').value = '';
-            document.getElementById('is_favorite').value = '';
+    document.getElementById('filterButton').addEventListener('click', function () {
+        // Get selected values from the dropdowns
+        var selectedLength = document.getElementById('length').value;
+        var selectedIsFavorite = document.getElementById('is_favorite').value;
+        var selectedPerPage = document.getElementById('per_page').value || 10;
 
-            // Build the URL without filter parameters
-            var filterUrl = '{{ route('customer.conversions.index') }}';
-
-            // Redirect to the unfiltered URL
-            window.location.href = filterUrl;
+        // Get selected genres
+        var selectedGenres = [];
+        var selectedThemes = [];
+        var selectedMoods = [];
+        document.querySelectorAll('input[name="genres[]"]:checked').forEach(function (checkbox) {
+            selectedGenres.push(checkbox.value);
+        });
+        document.querySelectorAll('input[name="themes[]"]:checked').forEach(function (checkbox) {
+            selectedThemes.push(checkbox.value);
+        });
+        document.querySelectorAll('input[name="moods[]"]:checked').forEach(function (checkbox) {
+            selectedMoods.push(checkbox.value);
         });
 
+        // Encode selected arrays as one parameter
+        var filterUrl = '{{ route('customer.conversions.index') }}' +
+            '?length=' + encodeURIComponent(selectedLength) +
+            '&is_favorite=' + encodeURIComponent(selectedIsFavorite) +
+            '&genres=' + encodeURIComponent(selectedGenres?.join(',')) +
+            '&themes=' + encodeURIComponent(selectedThemes?.join(',')) +
+            '&moods=' + encodeURIComponent(selectedMoods?.join(',')) +
+            '&order_by=created_at' + // Set default order_by value here
+            '&per_page=' + encodeURIComponent(selectedPerPage); // Set default per_page value here
+        console.log(filterUrl);
+        return
+        // Redirect to the filtered URL
+        window.location.href = filterUrl;
+    });
 
         var favoriteIcons = document.querySelectorAll('.favorite-icon');
 
@@ -233,10 +375,6 @@
                     });
                 });
             });
-
-// ...
-
-    });
 </script>
 
 @endsection

@@ -17,9 +17,10 @@ class ConversionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'mood' => $this->mood,
+            'moods' => $this->moods,
             'music_path' => $this->music_path,
             'genres' => $this->genres,
+            'themes' => $this->themes,
             'tempo' => $this->tempo,
             'length' => $this->length,
             'is_favorite' => $this->is_favorite,
