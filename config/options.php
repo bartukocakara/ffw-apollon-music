@@ -302,6 +302,19 @@ return [
             'name' => 'Workout & Wellness',
             'image_name' => 'WorkoutWellness.jpg',
         ],
+    ],
+    'tempos' => [
+        [
+            'name' => 'Low',
+            'image_name' => 'Low.jpg',
+        ],
+        [
+            'name' => 'Normal',
+            'image_name' => 'Normal.jpg',
+        ],
+        [
+            'name' => 'High',
+            'image_name' => 'High.jpg',
+        ],
     ]
-
 ];

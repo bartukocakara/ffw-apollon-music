@@ -27,25 +27,21 @@
                         </li>
                         <li class="nav-item">
                             <a href="#mood" class="nav-link" data-bs-toggle="tab" role="tab">
-                                Mood
+                                <p>Mood</p>
                                 <img src="{{ asset('options/tabs/Mood.png') }}" alt="" width="50">
-
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#theme" class="nav-link" data-bs-toggle="tab" role="tab">
-                                Theme
+                                <p>Theme</p>
                                 <img src="{{ asset('options/tabs/Theme.png') }}" alt="" width="50">
-
                             </a>
                         </li>
                         <li class="nav-item">
-                            <select id="tempo" name="tempo" class="nav-link" required="">
-                                <option>Tempo</option>
-                                <option value="low">Low</option>
-                                <option value="normal">Normal</option>
-                                <option value="high">High</option>
-                            </select>
+                            <a href="#tempo" class="nav-link" data-bs-toggle="tab" role="tab">
+                                <p>Tempo</p>
+                                <img src="{{ asset('options/tabs/Tempo.png') }}" alt="" width="50">
+                            </a>
                         </li>
                         <li class="nav-item">
                             <select id="length" name="length" class="nav-link" required="">
@@ -81,6 +77,15 @@
                         </div>
                         <div class="tab-pane fade" id="theme" role="tabpanel">
                             @foreach (config('options.themes') as $value)
+                                <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                                    {{ $value['name'] }}
+                                <input class="d-none" type="checkbox" name="themes[]" value="{{ $value['name'] }}">
+                                <img src="{{ asset('options/themes/' . $value['image_name']) }}" alt="{{ $value['name'] }}" width="75">
+                                </span>
+                            @endforeach
+                        </div>
+                        <div class="tab-pane fade" id="tempo" role="tabpanel">
+                            @foreach (config('options.tempo') as $value)
                                 <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
                                     {{ $value['name'] }}
                                 <input class="d-none" type="checkbox" name="themes[]" value="{{ $value['name'] }}">
