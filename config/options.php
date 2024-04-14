@@ -12,7 +12,7 @@ return [
         ],
         [
             'name' => 'Pop',
-            'image_name' => 'pop.jpg',
+            'image_name' => 'Pop.jpg',
         ],
         [
             'name' => 'Rock',
@@ -41,10 +41,6 @@ return [
         [
             'name' => 'Classical',
             'image_name' => 'Classical.jpg',
-        ],
-        [
-            'name' => 'Soundtracks',
-            'image_name' => 'Soundtrack.jpg',
         ],
         [
             'name' => 'World',
@@ -268,11 +264,11 @@ return [
         ],
         [
             'name' => 'Holiday season',
-            'image_name' => 'HolidaySeason.jpg',
+            'image_name' => 'Holiday.jpg',
         ],
         [
             'name' => 'Motivational & Inspiring',
-            'image_name' => 'MotivationalInspiring.jpg',
+            'image_name' => 'Motivational.jpg',
         ],
         [
             'name' => 'Nature',
@@ -292,29 +288,55 @@ return [
         ],
         [
             'name' => 'Tutorials',
-            'image_name' => 'Tutorials.jpg',
+            'image_name' => 'Tutorial.jpg',
         ],
         [
             'name' => 'Wedding & Romance',
-            'image_name' => 'WeddingRomance.jpg',
+            'image_name' => 'Wedding.jpg',
         ],
         [
             'name' => 'Workout & Wellness',
-            'image_name' => 'WorkoutWellness.jpg',
+            'image_name' => 'Workout.jpg',
         ],
     ],
     'tempos' => [
         [
-            'name' => 'Low',
+            'name' => 'low',
             'image_name' => 'Low.jpg',
         ],
         [
-            'name' => 'Normal',
+            'name' => 'normal',
             'image_name' => 'Normal.jpg',
         ],
         [
-            'name' => 'High',
+            'name' => 'high',
             'image_name' => 'High.jpg',
+        ],
+    ],
+    'length' => [
+        [
+            'name' => '15',
+            'data' => '0:15',
+        ],
+        [
+            'name' => '30',
+            'data' => '0:30',
+        ],
+        [
+            'name' => '45',
+            'data' => '0:45',
+        ],
+        [
+            'name' => '60',
+            'data' => '1:00',
+        ],
+        [
+            'name' => '120',
+            'data' => '2:00',
+        ],
+        [
+            'name' => '180',
+            'data' => '3:00',
         ],
     ]
 ];

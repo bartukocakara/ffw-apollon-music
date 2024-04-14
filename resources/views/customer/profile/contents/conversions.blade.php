@@ -22,147 +22,103 @@
                 <ul class="nav nav-tabs-alt" role="tablist">
                     <li class="nav-item">
                         <a href="#genre" class="nav-link active" data-bs-toggle="tab" role="tab">
-                            Genre
+                            <p>Genre</p>
+                            <img src="{{ asset('options/tabs/Genre.png') }}" alt="" width="50">
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#mood" class="nav-link" data-bs-toggle="tab" role="tab">
-                            Mood
+                            <p>Mood</p>
+                            <img src="{{ asset('options/tabs/Mood.png') }}" alt="" width="50">
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#theme" class="nav-link" data-bs-toggle="tab" role="tab">
-                            Theme
+                            <p>Theme</p>
+                            <img src="{{ asset('options/tabs/Theme.png') }}" alt="" width="50">
                         </a>
                     </li>
                     <li class="nav-item">
-                        <select id="tempo" name="tempo" class="nav-link">
-                            <option>Tempo</option>
-                            <option value="low">Low</option>
-                            <option value="normal">Normal</option>
-                            <option value="high">High</option>
-                        </select>
+                        <a href="#tempo" class="nav-link" data-bs-toggle="tab" role="tab">
+                            <p>Tempo</p>
+                            <img src="{{ asset('options/tabs/Tempo.png') }}" alt="" width="50">
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <select id="length" name="length" class="nav-link">
-                            <option>Length</option>
-                            <option value="15">0:15</option>
-                            <option value="30">0:30</option>
-                            <option value="45">0:45</option>
-                            <option value="60">1:00</option>
-                            <option value="120">2:00</option>
-                            <option value="180">3:00</option>
-                        </select>
+                        <a href="#length" class="nav-link" data-bs-toggle="tab" role="tab">
+                            <p>Length</p>
+                            <img src="{{ asset('options/tabs/Length.png') }}" alt="" width="50">
+                        </a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="genre" role="tabpanel">
+                        <div class='m-auto create-option-container'>
                         @foreach (config('options.genres') as $value)
-                            <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                                {{ $value['name'] }}
-                            <input class="d-none" type="checkbox" name="genres[]" value="{{ $value['name'] }}">
-                            <img src="{{ asset('options/genres/' . $value['image_name'])) }}" alt="{{ $value['name'] }}">
-                            </span>
+                            <div class="text-center" style="cursor: pointer; background:black;border-radius:10px">
+                                <div class="mx-auto"  onclick="toggleCheckbox(this)">
+                                    <input class="d-none" type="checkbox" name="genres[]" value="{{ $value['name'] }}">
+                                    <h6 class="m-auto">{{ $value['name'] }}</h6>
+                                </div>
+                            </div>
                         @endforeach
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="mood" role="tabpanel">
-                        @foreach (config('options.moods') as $value)
-                            <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                                {{ $value['name'] }}
-                            <input class="d-none" type="checkbox" name="moods[]" value="{{ $value['name'] }}">
-                            <img src="{{ asset('options/moods/' . $value['image_name'])) }}" alt="{{ $value['name'] }}">
-                            </span>
-                        @endforeach
-                        
+                        <div class='m-auto create-option-container'>
+                            @foreach (config('options.moods') as $value)
+                                <div class="text-center" style="cursor: pointer; background:black;border-radius:10px">
+                                    <div class="mx-auto"  onclick="toggleCheckbox(this)">
+                                        <input class="d-none" type="checkbox" name="moods[]" value="{{ $value['name'] }}">
+                                        <h6 class="m-auto">{{ $value['name'] }}</h6>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="theme" role="tabpanel">
+                        <div class='m-auto create-option-container'>
 
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Ads & Trailers
-                            <input class="d-none" type="checkbox" name="themes[]" value="Ads & Trailers">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Broadcasting
-                            <input class="d-none" type="checkbox" name="themes[]" value="Broadcasting">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Cinematic
-                            <input class="d-none" type="checkbox" name="themes[]" value="Cinematic">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Corporate
-                            <input class="d-none" type="checkbox" name="themes[]" value="Corporate">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Comedy
-                            <input class="d-none" type="checkbox" name="themes[]" value="Comedy">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Cooking
-                            <input class="d-none" type="checkbox" name="themes[]" value="Cooking">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Documentary
-                            <input class="d-none" type="checkbox" name="themes[]" value="Documentary">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Drama
-                            <input class="d-none" type="checkbox" name="themes[]" value="Drama">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Fashion & Beauty
-                            <input class="d-none" type="checkbox" name="themes[]" value="Fashion & Beauty">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Gaming
-                            <input class="d-none" type="checkbox" name="themes[]" value="Gaming">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Holiday season
-                            <input class="d-none" type="checkbox" name="themes[]" value="Holiday season">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Motivational & Inspiring
-                            <input class="d-none" type="checkbox" name="themes[]" value="Motivational & Inspiring">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Nature
-                            <input class="d-none" type="checkbox" name="themes[]" value="Nature">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Photography
-                            <input class="d-none" type="checkbox" name="themes[]" value="Photography">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Technology
-                            <input class="d-none" type="checkbox" name="themes[]" value="Technology">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Travel
-                            <input class="d-none" type="checkbox" name="themes[]" value="Travel">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Tutorials
-                            <input class="d-none" type="checkbox" name="themes[]" value="Tutorials">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Wedding & Romance
-                            <input class="d-none" type="checkbox" name="themes[]" value="Wedding & Romance">
-                        </span>
-                        <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
-                            Workout & Wellness
-                            <input class="d-none" type="checkbox" name="themes[]" value="Workout & Wellness">
-                        </span>
-
+                        @foreach (config('options.themes') as $value)
+                            <div class="text-center" style="cursor: pointer; background:black;border-radius:10px">
+                                <div class="mx-auto"  onclick="toggleCheckbox(this)">
+                                    <input class="d-none" type="checkbox" name="themes[]" value="{{ $value['name'] }}">
+                                    <h6 class="m-auto">{{ $value['name'] }}</h6>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade text-center py-3" id="tempo" role="tabpanel">
+                        @foreach (config('options.tempos') as $value)
+                            <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                                {{ $value['name'] }}
+                            <input class="d-none" type="checkbox" name="tempo" value="{{ $value['name'] }}">
+                            </span>
+                        @endforeach
+                    </div>
+                    <div class="tab-pane fade text-center py-3" id="length" role="tabpanel">
+                        @foreach (config('options.length') as $value)
+                            <span class="btn btn-outline-primary btn-sm mb-2" onclick="toggleCheckbox(this)">
+                                {{ $value['name'] }}
+                            <input class="d-none" type="checkbox" name="length" value="{{ $value['name'] }}">
+                            </span>
+                        @endforeach
                     </div>
                 </div>
                 <div class="d-flex">
-                    <button id="" class="btn btn-primary w-25" style="margin:auto">Activate Filter<i class='bx bx-filter'></i></button>
-                    <button id="clearFilterButton" class="btn btn-secondary w-25" style="margin:auto">Clear Filter<i class='bx bx-sync'></i></button>
+                    <button id="" class="btn btn-primary w-25" style="margin:auto">
+                        Activate Filter
+                        <i class='bx bx-filter'></i>
+                    </button>
+                    <button id="clearFilterButton" class="btn btn-secondary w-25" style="margin:auto">
+                        Clear Filter
+                        <i class='bx bx-sync'></i>
+                    </button>
                 </div>
             </form>
             <br/>
-            <div class="row g-md-4 g-3">
+            <div class="row g-3">
             @foreach ($collection['data'] as $conversion )
                 <div class="col-6 border-0 shadow-sm overflow-hidden mb-4">
                     <div class="card border-0 shadow-sm overflow-hidden mb-4">

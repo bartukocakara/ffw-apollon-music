@@ -32,7 +32,6 @@ class ConversionService extends CrudService
     public function store(array $data): Model
     {
         $data['user_id'] = auth()->user()->id;
-
         // Create and store the conversion record
         $conversion = $this->conversionRepository->create($data);
 
