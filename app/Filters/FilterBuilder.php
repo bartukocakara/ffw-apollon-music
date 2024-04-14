@@ -37,8 +37,11 @@ class FilterBuilder
             if (!class_exists($class)) {
                 continue;
             }
-
-            (new $class($this->query))->handle($value ?? '');
+            if (is_string($value) && strlen($value)) {
+                (new $class($this->query))->handle( $this->sanitizeInput($value));
+            } elseif(is_array($value)) {
+                (new $class($this->query))->handle($value);
+            }
         }
 
         return  $this->paginating($this->query, $this->filters);
@@ -58,5 +61,22 @@ class FilterBuilder
         return $query->orderBy($searchArray['order_by'], $searchArray['order_sort'])
             ->paginate($searchArray["per_page"]);
 
+    }
+
+        /**
+     * Sanitizes user input to prevent SQL injection attacks
+     *
+     * @param string $input The user input to sanitize
+     * @return string The sanitized input
+     */
+    protected function sanitizeInput(string $input): string
+    {
+        // Remove any potentially harmful characters
+        $input = preg_replace("/[^\w\-]/", "", $input);
+
+        // Escape special characters that could interfere with database queries
+        $input = str_replace(array("'", "\"", "\\", "\0"), array("''", "", "\\\\", ""), $input);
+
+        return $input;
     }
 }

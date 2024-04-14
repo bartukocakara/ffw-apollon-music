@@ -53,21 +53,21 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="genre" role="tabpanel">
-                        <div class='m-auto create-option-container'>
+                        <div class='m-auto filter-option-container'>
                         @foreach (config('options.genres') as $value)
-                            <div class="text-center" style="cursor: pointer; background:black;border-radius:10px">
-                                <div class="mx-auto"  onclick="toggleCheckbox(this)">
+                            <div class="text-center filter-option">
+                                <div class="mx-auto" onclick="toggleCheckbox(this)">
                                     <input class="d-none" type="checkbox" name="genres[]" value="{{ $value['name'] }}">
-                                    <h6 class="m-auto">{{ $value['name'] }}</h6>
+                                    <h6 class="m-auto p-2">{{ $value['name'] }}</h6>
                                 </div>
                             </div>
                         @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="mood" role="tabpanel">
-                        <div class='m-auto create-option-container'>
+                        <div class='m-auto filter-option-container'>
                             @foreach (config('options.moods') as $value)
-                                <div class="text-center" style="cursor: pointer; background:black;border-radius:10px">
+                                <div class="text-center filter-option" style="cursor: pointer; background:black;border-radius:10px">
                                     <div class="mx-auto"  onclick="toggleCheckbox(this)">
                                         <input class="d-none" type="checkbox" name="moods[]" value="{{ $value['name'] }}">
                                         <h6 class="m-auto">{{ $value['name'] }}</h6>
@@ -77,10 +77,9 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="theme" role="tabpanel">
-                        <div class='m-auto create-option-container'>
-
+                        <div class='m-auto filter-option-container'>
                         @foreach (config('options.themes') as $value)
-                            <div class="text-center" style="cursor: pointer; background:black;border-radius:10px">
+                            <div class="text-center filter-option" style="cursor: pointer; background:black;border-radius:10px">
                                 <div class="mx-auto"  onclick="toggleCheckbox(this)">
                                     <input class="d-none" type="checkbox" name="themes[]" value="{{ $value['name'] }}">
                                     <h6 class="m-auto">{{ $value['name'] }}</h6>
@@ -106,7 +105,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="d-flex">
+                <div class="d-flex mt-5">
                     <button id="" class="btn btn-primary w-25" style="margin:auto">
                         Activate Filter
                         <i class='bx bx-filter'></i>
@@ -139,6 +138,7 @@
                                     <div class="fs-sm text-muted mb-1">{{ $conversion['created_at'] }}</div>
                                     <h2 class="h4 pb-1 mb-2">
                                         <a href="#" class="favorite-icon" data-conversion-id="{{ $conversion['id'] }}">
+                                            <input id="is_favorite" type="checkbox" class='d-none' value="{{ $conversion['is_favorite'] }}" />
                                             <i class='bx {{ $conversion['is_favorite'] ? 'bxs' : 'bx' }}-heart'></i>
                                         </a>
                                     </h2>
@@ -182,9 +182,11 @@
             @endforeach
             <!-- Pagination -->
             @if($pagination)
+                <input type="text" id="per_page" class="d-none" value="{{ $pagination['per_page'] }}">
                 <!-- Pagination: Basic example -->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
+
                         @foreach ($pagination['links'] as $page)
                             <li class="page-item @if($page['active']) active @endif" aria-current="page">
                                 @if($page['url'])
@@ -211,18 +213,18 @@
             button.innerHTML = '<i class="bx bx-play"></i>';
         }
     }
-    function toggleCheckbox(span) {
+    function toggleCheckbox(div) {
             // Get the hidden checkbox inside the span
-            var checkbox = span.querySelector('input[type="checkbox"]');
+            var checkbox = div.querySelector('input[type="checkbox"]');
 
             // Toggle the 'checked' attribute of the checkbox
             checkbox.checked = !checkbox.checked;
-
             // Optionally, you can also toggle the 'active' class on the span
             if (checkbox.checked) {
-                span.classList.add('active');
+                console.log(div.parentNode);
+                div.parentNode.classList.add('active');
             } else {
-                span.classList.remove('active');
+                div.parentNode.classList.remove('active');
             }
         }
 
@@ -290,8 +292,6 @@
             '&moods=' + encodeURIComponent(selectedMoods?.join(',')) +
             '&order_by=created_at' + // Set default order_by value here
             '&per_page=' + encodeURIComponent(selectedPerPage); // Set default per_page value here
-        console.log(filterUrl);
-        return
         // Redirect to the filtered URL
         window.location.href = filterUrl;
     });
