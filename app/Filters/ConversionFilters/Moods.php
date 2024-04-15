@@ -21,6 +21,6 @@ class Moods implements FilterInterface
     */
     public function handle($value): void
     {
-        $this->query->whereIn('moods', $value);
+        $this->query->whereJsonContains('moods', $value);
     }
 }

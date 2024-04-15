@@ -18,7 +18,7 @@
                     {{ __('Create Music') }}
                 </a>
             </div>
-            <div id="filterButton">
+            <div>
                 <ul class="nav nav-tabs-alt" role="tablist">
                     <li class="nav-item">
                         <a href="#genre" class="nav-link active" data-bs-toggle="tab" role="tab">
@@ -67,7 +67,7 @@
                     <div class="tab-pane fade" id="mood" role="tabpanel">
                         <div class='m-auto filter-option-container'>
                             @foreach (config('options.moods') as $value)
-                                <div class="text-center filter-option" style="cursor: pointer; background:black;border-radius:10px">
+                                <div class="text-center filter-option">
                                     <div class="mx-auto"  onclick="toggleCheckbox(this)">
                                         <input class="d-none" type="checkbox" name="moods[]" value="{{ $value['name'] }}">
                                         <h6 class="m-auto">{{ $value['name'] }}</h6>
@@ -79,7 +79,7 @@
                     <div class="tab-pane fade" id="theme" role="tabpanel">
                         <div class='m-auto filter-option-container'>
                         @foreach (config('options.themes') as $value)
-                            <div class="text-center filter-option" style="cursor: pointer; background:black;border-radius:10px">
+                            <div class="text-center filter-option">
                                 <div class="mx-auto"  onclick="toggleCheckbox(this)">
                                     <input class="d-none" type="checkbox" name="themes[]" value="{{ $value['name'] }}">
                                     <h6 class="m-auto">{{ $value['name'] }}</h6>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="d-flex mt-5">
-                    <button id="" class="btn btn-primary w-25" style="margin:auto">
+                    <button id="filterButton" class="btn btn-primary w-25" style="margin:auto">
                         Activate Filter
                         <i class='bx bx-filter'></i>
                     </button>
@@ -150,7 +150,7 @@
 
                                     @endforeach
                                     <h6>Genres</h6>
-                                    @foreach($conversion['moods'] as $value)
+                                    @foreach($conversion['genres'] as $value)
                                         <span class="btn btn-outline-primary btn-sm mb-2">
                                             {{ $value }}
                                         </span>
@@ -161,9 +161,7 @@
                                         <span class="btn btn-outline-primary btn-sm mb-2">
                                             {{ $value }}
                                         </span>
-
                                     @endforeach
-
                                     <div class="d-flex">
                                         <form action="{{ route('customer.conversions.destroy', $conversion['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this conversion?')">
                                             @csrf
@@ -213,6 +211,7 @@
             button.innerHTML = '<i class="bx bx-play"></i>';
         }
     }
+
     function toggleCheckbox(div) {
             // Get the hidden checkbox inside the span
             var checkbox = div.querySelector('input[type="checkbox"]');
@@ -221,7 +220,6 @@
             checkbox.checked = !checkbox.checked;
             // Optionally, you can also toggle the 'active' class on the span
             if (checkbox.checked) {
-                console.log(div.parentNode);
                 div.parentNode.classList.add('active');
             } else {
                 div.parentNode.classList.remove('active');
@@ -237,11 +235,10 @@
         var selectedGenres = urlParams.get('genres');
         var selectedThemes = urlParams.get('themes');
         var selectedMoods = urlParams.get('moods');
-        var selectedIsFavorite = urlParams.get('is_favorite');
         var selectedPerPage = urlParams.get('per_page');
         // Set the selected values in the dropdowns
         document.getElementById('length').value = selectedLength;
-        document.getElementById('is_favorite').value = selectedIsFavorite;
+        // document.getElementById('is_favorite').value = selectedIsFavorite;
         document.getElementById('per_page').value = selectedPerPage;
 
         // Check and activate selected checkboxes for genres, themes, and moods
@@ -249,24 +246,31 @@
         var selectedThemes = urlParams.getAll('themes[]');
         var selectedMoods = urlParams.getAll('moods[]');
         selectedGenres.forEach(function (genre) {
-            document.querySelector('input[name="genres[]"][value="' + genre + '"]').checked = true;
-            var checkbox = span.querySelector('input[type="checkbox"]');
-
+            var checkbox = document.querySelector('input[name="genres[]"][value="' + genre + '"]');
+            if (checkbox) {
+                checkbox.checked = true;
+                checkbox.closest('.filter-option').classList.add('active');
+            }
         });
         selectedThemes.forEach(function (theme) {
-            document.querySelector('input[name="themes[]"][value="' + theme + '"]').checked = true;
-        });
-        selectedMoods.forEach(function (mood) {
-            document.querySelector('input[name="moods[]"][value="' + mood + '"]').checked = true;
+            var checkbox = document.querySelector('input[name="themes[]"][value="' + theme + '"]');
+            if (checkbox) {
+                checkbox.checked = true;
+                checkbox.closest('.filter-option').classList.add('active');
+            }
         });
 
-        // Add similar logic for themes and moods if needed
+        selectedMoods.forEach(function (mood) {
+            var checkbox = document.querySelector('input[name="moods[]"][value="' + mood + '"]');
+            if (checkbox) {
+                checkbox.checked = true;
+                checkbox.closest('.filter-option').classList.add('active');
+            }
+        });
     });
 
     document.getElementById('filterButton').addEventListener('click', function () {
-        // Get selected values from the dropdowns
         var selectedLength = document.getElementById('length').value;
-        var selectedIsFavorite = document.getElementById('is_favorite').value;
         var selectedPerPage = document.getElementById('per_page').value || 10;
 
         // Get selected genres
@@ -285,52 +289,65 @@
 
         // Encode selected arrays as one parameter
         var filterUrl = '{{ route('customer.conversions.index') }}' +
-            '?length=' + encodeURIComponent(selectedLength) +
-            '&is_favorite=' + encodeURIComponent(selectedIsFavorite) +
-            '&genres=' + encodeURIComponent(selectedGenres?.join(',')) +
-            '&themes=' + encodeURIComponent(selectedThemes?.join(',')) +
-            '&moods=' + encodeURIComponent(selectedMoods?.join(',')) +
-            '&order_by=created_at' + // Set default order_by value here
-            '&per_page=' + encodeURIComponent(selectedPerPage); // Set default per_page value here
+            '?length=' + encodeURIComponent(selectedLength);
+
+        // Add selected genres as array parameters
+        selectedGenres.forEach(function(genre) {
+            filterUrl += '&genres[]=' + encodeURIComponent(genre);
+        });
+
+        // Add selected themes as array parameters
+        selectedThemes.forEach(function(theme) {
+            filterUrl += '&themes[]=' + encodeURIComponent(theme);
+        });
+
+        // Add selected moods as separate parameters
+        selectedMoods.forEach(function(mood) {
+            filterUrl += '&moods[]=' + encodeURIComponent(mood);
+        });
+
+        // Add default parameters
+        filterUrl += '&order_by=created_at' +
+            '&per_page=' + encodeURIComponent(selectedPerPage);
+
         // Redirect to the filtered URL
         window.location.href = filterUrl;
-    });
+    }); // Get selected values from the dropdowns
 
-        var favoriteIcons = document.querySelectorAll('.favorite-icon');
 
-            favoriteIcons.forEach(function (icon) {
-                icon.addEventListener('click', function (e) {
-                    e.preventDefault();
 
-                    // Get the conversion ID from the data attribute
-                    var conversionId = icon.getAttribute('data-conversion-id');
-                    // Get the CSRF token from the meta tag
-                    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var favoriteIcons = document.querySelectorAll('.favorite-icon');
 
-                    // Get the current is_favorite value from the icon's class
-                    var currentIsFavorite = icon.querySelector('i').classList.contains('bxs-heart');
-
-                    // Use Axios to send the PUT request
-                    axios.put('/conversions/' + conversionId, {
-                        is_favorite: !currentIsFavorite // Send the opposite value
-                    }, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': csrfToken,
-                        },
-                    })
-                    .then(function (response) {
-                        // Update the heart icon based on the new is_favorite value
-                        var responseData = response.data;
-                        var iconElement = icon.querySelector('i');
-                        iconElement.classList.toggle('bxs-heart', responseData.is_favorite);
-                        iconElement.classList.toggle('bx-heart', !responseData.is_favorite);
-                    })
-                    .catch(function (error) {
-                        console.error('Error updating is_favorite:', error.response.statusText);
-                    });
+        favoriteIcons.forEach(function (icon) {
+            icon.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Get the conversion ID from the data attribute
+                var conversionId = icon.getAttribute('data-conversion-id');
+                // Get the CSRF token from the meta tag
+                var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                // Get the current is_favorite value from the icon's class
+                var currentIsFavorite = icon.querySelector('i').classList.contains('bxs-heart');
+                // Use Axios to send the PUT request
+                axios.put('/conversions/' + conversionId, {
+                    is_favorite: !currentIsFavorite // Send the opposite value
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                })
+                .then(function (response) {
+                    // Update the heart icon based on the new is_favorite value
+                    var responseData = response.data;
+                    var iconElement = icon.querySelector('i');
+                    iconElement.classList.toggle('bxs-heart', responseData.is_favorite);
+                    iconElement.classList.toggle('bx-heart', !responseData.is_favorite);
+                })
+                .catch(function (error) {
+                    console.error('Error updating is_favorite:', error.response.statusText);
                 });
             });
+        });
 </script>
 
 @endsection

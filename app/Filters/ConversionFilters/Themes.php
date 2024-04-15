@@ -21,6 +21,6 @@ class Themes implements FilterInterface
     */
     public function handle($value): void
     {
-        $this->query->whereIn('themes', $value);
+        $this->query->whereJsonContains('themes', $value);
     }
 }
