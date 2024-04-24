@@ -50,54 +50,54 @@
                                 <div class='m-auto create-option-container'>
                                 @foreach (config('options.genres') as $value)
                                     <div class="create-option-parent">
-                                        <div class="create-option m-auto mb-2"  style="height: 100px" onclick="toggleCheckbox(this)">
+                                        <div class="create-option m-auto mb-2"  style="width: 120px;height: 120px;" onclick="toggleCheckbox(this)">
                                             <input class="d-none" type="checkbox" name="genres[]" value="{{ $value['name'] }}">
-                                            <img src="{{ asset('options/genres/' . $value['image_name']) }}" alt="" width="100" style="border-radius:10px; height:100%">
+                                            <img src="{{ asset('options/genres/' . $value['image_name']) }}" alt="" style="border-radius:10px; width:100%; height: 120px;">
                                             <h6 class="create-option-text">{{ $value['name'] }}</h6>
                                         </div>
                                     </div>
                                 @endforeach
                                 </div>
-                                <button type="button" class="btn btn-info mb-auto next-stage" data-current="#genre" data-next="#mood">Next step ></button>
+                                <button type="button" class="btn btn-info mt-auto next-stage" data-current="#genre" data-next="#mood">Next step ></button>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="mood" role="tabpanel">
                             <div class="d-flex w-75 m-auto">
-                                <button type="button" class="btn btn-info mb-auto prev-stage" data-current="#mood" data-prev="#genre">< Previous step</button>
+                                <button type="button" class="btn btn-info mt-auto prev-stage" data-current="#mood" data-prev="#genre">< Previous step</button>
                                 <div class='m-auto create-option-container'>
                                     @foreach (config('options.moods') as $value)
                                         <div class="create-option-parent">
-                                            <div class="create-option m-auto mb-2" style="height: 100px" onclick="toggleCheckbox(this)">
+                                            <div class="create-option m-auto mb-2" style="width: 120px;height: 120px;" onclick="toggleCheckbox(this)">
                                                 <input class="d-none" type="checkbox" name="moods[]" value="{{ $value['name'] }}">
-                                                <img src="{{ asset('options/moods/' . $value['image_name']) }}" alt="{{ $value['name'] }}" width="100" style="border-radius:10px; height:100%">
+                                                <img src="{{ asset('options/moods/' . $value['image_name']) }}" alt="{{ $value['name'] }}" width="100" style="border-radius:10px; width:100%; height: 120px;">
                                                 <h6 class="create-option-text">{{ $value['name'] }}</h6>
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
-                                <button type="button" class="btn btn-info mb-auto next-stage" data-current="#mood" data-next="#theme">Next step ></button>
+                                <button type="button" class="btn btn-info mt-auto next-stage" data-current="#mood" data-next="#theme">Next step ></button>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="theme" role="tabpanel">
                             <div class="d-flex w-75 m-auto">
-                                <button type="button" class="btn btn-info mb-auto prev-stage" data-current="#theme" data-prev="#mood">< Previous step</button>
+                                <button type="button" class="btn btn-info mt-auto prev-stage" data-current="#theme" data-prev="#mood">< Previous step</button>
                                 <div class='m-auto create-option-container'>
                                     @foreach (config('options.themes') as $value)
                                         <div class="create-option-parent">
-                                            <div class="create-option m-auto mb-2" style="height: 100px" onclick="toggleCheckbox(this)">
+                                            <div class="create-option m-auto mb-2" style="width: 120px;height: 120px;" onclick="toggleCheckbox(this)">
                                                 <input class="d-none" type="checkbox" name="themes[]" value="{{ $value['name'] }}">
-                                                <img src="{{ asset('options/themes/' . $value['image_name']) }}" alt="{{ $value['name'] }}" width="100" style="border-radius:10px; height:100%">
+                                                <img src="{{ asset('options/themes/' . $value['image_name']) }}" alt="{{ $value['name'] }}" width="100" style="border-radius:10px; width:100%; height: 120px;">
                                                 <h6 class="create-option-text">{{ $value['name'] }}</h6>
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
-                                <button type="button" class="btn btn-info mb-auto next-stage" data-current="#theme" data-next="#length">Next step ></button>
+                                <button type="button" class="btn btn-info mt-auto next-stage" data-current="#theme" data-next="#length">Next step ></button>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="length" role="tabpanel" data-single-select="true">
                             <div class="d-flex w-75 m-auto">
-                                <button type="button" class="btn btn-info mb-auto prev-stage" name="length" data-current="#length" data-prev="#theme">< Previous step</button>
+                                <button type="button" class="btn btn-info mt-auto prev-stage" name="length" data-current="#length" data-prev="#theme">< Previous step</button>
                                     <div class='text-center'>
                                         <h6>Tempo</h6>
                                         <img src="{{ asset('options/tabs/tempo.png') }}" alt="" width="50">
@@ -119,7 +119,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-lg mb-auto ml-auto btn-success" style="margin-left:40%; margin-top:20px">Submit</button>
+                                <button type="submit" class="btn btn-lg mt-auto ml-auto btn-success" style="margin-left:40%; margin-top:20px">Submit</button>
                             </div>
                         </div>
                     </div>
